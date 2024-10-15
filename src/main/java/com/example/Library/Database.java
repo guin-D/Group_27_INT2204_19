@@ -16,15 +16,20 @@ public class Database {
     private ArrayList<Order> orders = new ArrayList<Order>();
     private ArrayList<Borrowing> borrowings = new ArrayList<Borrowing>();
 
-    private File usersfile = new File("C:\\Users\\nguye\\IdeaProjects\\LibraryManagementSystem\\Data\\Users");
-    private File documentsfile = new File("C:\\Users\\nguye\\IdeaProjects\\LibraryManagementSystem\\Data\\Documents");
-    private File folder = new File("C:\\Users\\nguye\\IdeaProjects\\LibraryManagementSystem\\Data");
-    private File ordersfile = new File("C:\\Users\\nguye\\IdeaProjects\\LibraryManagementSystem\\Data\\Orders");
-    private File borrowingsfile = new File("C:\\Users\\nguye\\IdeaProjects\\LibraryManagementSystem\\Data\\Borrowings");
+    private File folder = new File("D:\\LibraryManagement\\Data");
+    private File folder2 = new File("D:\\LibraryManagement");
+
+    private File usersfile = new File("D:\\LibraryManagement\\Data\\Users");
+    private File documentsfile = new File("D:\\LibraryManagement\\Data\\Documents");
+    private File ordersfile = new File("D:\\LibraryManagement\\Data\\Orders");
+    private File borrowingsfile = new File("D:\\LibraryManagement\\Data\\Borrowing");
 
     public Database() {
         if (!folder.exists()) {
             folder.mkdir();
+        }
+        if (!folder2.exists()) {
+            folder2.mkdir();
         }
         if (!usersfile.exists()) {
             try {
@@ -63,10 +68,10 @@ public class Database {
         saveUsers();
     }
 
-    public int login(String phonenumber, String email) {
+    public int login(String phonenumber, String password) {
         int n = -1;
         for (User s : users) {
-            if (s.getPhonenumber().matches(phonenumber) && s.getEmail().matches(email)) {
+            if (s.getPhonenumber().matches(phonenumber) && s.getPassword().matches(password)) {
                 n = users.indexOf(s);
                 break;
             }
@@ -100,12 +105,12 @@ public class Database {
             String[] a1 = text1.split("<NewUser/>");
             for (String s : a1) {
                 String[] a2 = s.split("<N/>");
-                if (a2[3].matches("Admin")) {
-                    User user = new Admin(a2[0], a2[1], a2[2]);
+                if (a2[4].matches("Admin")) {
+                    User user = new Admin(a2[0], a2[1], a2[2], a2[3]);
                     users.add(user);
                     usernames.add(user.getName());
                 } else {
-                    User user = new NormalUser(a2[0], a2[1], a2[2]);
+                    User user = new NormalUser(a2[0], a2[1], a2[2], a2[3]);
                     users.add(user);
                     usernames.add(user.getName());
                 }

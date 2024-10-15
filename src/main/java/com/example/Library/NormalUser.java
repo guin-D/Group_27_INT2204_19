@@ -17,8 +17,8 @@ public class NormalUser extends User {
         };
     }
 
-    public NormalUser(String name, String email, String phonenumber) {
-        super(name, email, phonenumber);
+    public NormalUser(String name, String email, String phonenumber, String password) {
+        super(name, email, phonenumber, password);
         this.operations = new IOOperation[]{
                 new displayDocument(),
                 new Search(),
@@ -50,6 +50,6 @@ public class NormalUser extends User {
     }
 
     public String toString() {
-        return name + "<N/>" + email + "<N/>" + phonenumber + "<N/>" + "Normal";
+        return name + "<N/>" + email + "<N/>" + phonenumber + "<N/>" + password + "<N/>" + "Normal";
     }
 }

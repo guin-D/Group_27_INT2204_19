@@ -57,13 +57,15 @@ public class Exit implements IOOperation {
         String phonenumber = s.next();
         System.out.println("Enter email: ");
         String email = s.next();
+        System.out.println("Enter password: ");
+        String password = s.next();
         System.out.println("1. Admin\n2. Normal User");
         int n2 = s.nextInt();
         User user;
         if (n2 == 1) {
-            user = new Admin(name, email, phonenumber);
+            user = new Admin(name, email, phonenumber, password);
         } else {
-            user = new NormalUser(name, email, phonenumber);
+            user = new NormalUser(name, email, phonenumber, password);
         }
         database.AddUser(user);
 
