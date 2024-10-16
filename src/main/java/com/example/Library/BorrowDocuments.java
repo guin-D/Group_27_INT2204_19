@@ -30,7 +30,7 @@ public class BorrowDocuments implements IOOperation {
                     System.out.println("You must return the document before 14 days from now\n"
                             + "Expiry date: " + borrowing.getFinish() + "\nEnjoy!");
                 } else {
-                    System.out.println("This document isn't avaible for borrowing!");
+                    System.out.println("This document isn't available for borrowing!");
                 }
             }
         } else {
