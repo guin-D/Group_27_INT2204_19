@@ -12,7 +12,7 @@ public class NormalUser extends User {
                 new BorrowDocuments(),
                 new CalculateFine(),
                 new ReturnDocument(),
-                new displayDocument(),
+                new DisplayUserInfo(),
                 new Exit(),
         };
     }
