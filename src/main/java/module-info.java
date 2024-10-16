@@ -9,7 +9,9 @@ module org.example.librarymanagementsystem {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
 
-    opens UI.example.Library to javafx.fxml;
-    exports UI.example.Library;
+    opens UItest to javafx.fxml;
+    exports UItest;
+    exports LibraryManagement.example;
+    opens LibraryManagement.example to javafx.fxml;
 
 }
