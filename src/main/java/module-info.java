@@ -11,7 +11,7 @@ module org.example.librarymanagementsystem {
 
     opens UItest to javafx.fxml;
     exports UItest;
-    exports LibraryManagement.example;
-    opens LibraryManagement.example to javafx.fxml;
+    exports LibraryManagement;
+    opens LibraryManagement to javafx.fxml;
 
 }
