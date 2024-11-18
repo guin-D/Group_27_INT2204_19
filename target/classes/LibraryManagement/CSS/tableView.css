@@ -1,0 +1,5 @@
+.table-view .column-header {
+    -fx-background-color: #203169; /* Màu nền */
+    -fx-text-fill: white;          /* Màu chữ */
+    -fx-font-weight: bold;         /* Chữ đậm */
+}
