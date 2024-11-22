@@ -1,4 +1,4 @@
 package LibraryManagement.controllers;
 
-public class orders {
+public class borrowHistory {
 }

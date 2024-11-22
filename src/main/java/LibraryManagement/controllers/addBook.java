@@ -1,4 +1,4 @@
 package LibraryManagement.controllers;
 
-public class bookPage {
+public class addBook {
 }

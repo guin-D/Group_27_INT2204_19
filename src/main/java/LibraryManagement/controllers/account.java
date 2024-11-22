@@ -1,6 +1,6 @@
 package LibraryManagement.controllers;
 
-public class borrow {
+public class account {
     private home home;
 
     public void setHome(home home) {

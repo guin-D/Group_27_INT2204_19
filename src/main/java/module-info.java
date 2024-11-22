@@ -9,6 +9,7 @@ module org.example.librarymanagementsystem {
     requires org.kordamp.bootstrapfx.core;
     requires com.fasterxml.jackson.databind;
     requires java.net.http;
+    requires java.desktop;
 
     exports LibraryManagement.commandline;
     opens LibraryManagement.commandline to javafx.fxml;

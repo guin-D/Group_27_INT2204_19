@@ -43,11 +43,11 @@ public class Document {
     }
 
     public Document(String title, String author, String publisher,
-                    String genre, String status, int qty, double price, int brwcopiers, String description) {
+                    String isbn, String status, int qty, double price, int brwcopiers, String description) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.ISBN = genre;
+        this.ISBN = isbn;
         this.status = status;
         this.qty = qty;
         this.price = price;

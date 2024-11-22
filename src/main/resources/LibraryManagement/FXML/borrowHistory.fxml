@@ -19,7 +19,7 @@
 
 <AnchorPane prefHeight="710.0" prefWidth="1210.0" style="-fx-background-color: #F6F8FE;"
             xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="LibraryManagement.controllers.googleBookAPI">
+            fx:controller="LibraryManagement.controllers.borrowHistory">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1210.0" spacing="30.0"
               style="-fx-background-color: #F6F8FE;" AnchorPane.topAnchor="20.0">
