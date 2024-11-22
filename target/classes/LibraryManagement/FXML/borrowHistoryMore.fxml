@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1210.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.borrowHistoryMore">
+    <content>
+        <VBox prefWidth="1210.0" spacing="20.0" style="-fx-background-color: #F6F8FE;">
+            <children>
+                <Label text="Borrowed history" textFill="#203169">
+                    <font>
+                        <Font name="Georgia Bold" size="24.0"/>
+                    </font>
+                </Label>
+                <HBox prefHeight="300.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+                        <VBox prefHeight="300.0" prefWidth="674.0" spacing="20.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Title" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
+                                            <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0">
+                                                    <image>
+                                                        <Image url="@../Image/pen_2.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
+                                            <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0">
+                                                    <image>
+                                                        <Image url="@../Image/trash.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
+                                            <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0">
+                                                    <image>
+                                                        <Image url="@../Image/more.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Author" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Total quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Borrowed quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Available quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <HBox.margin>
+                                <Insets top="30.0"/>
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <TableView prefHeight="200.0" style="-fx-background-color: #FFFFFF;">
+                    <columns>
+                        <TableColumn prefWidth="120.0" style="-fx-text-color: #FFFFFF; -fx-background-color: #203169;">
+                            <graphic>
+                                <Label style="-fx-text-fill: FFFFFF;" text="Borrowed by"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="170.0" style="-fx-background-color: #203169;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #FFFFFF;" text="Phone number"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.0"
+                                     style="-fx-background-color: #203169; -fx-graphic-text-gap: #FFFFFF;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #FFFFFF;" text="Borrowed date"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="170.0" style="-fx-background-color: #203169;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #FFFFFF;" text="Returned date"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.0" style="-fx-background-color: #203169;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #FFFFFF;" text="Status"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="370.0" style="-fx-background-color: #203169;"/>
+                    </columns>
+                </TableView>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>
