@@ -1,12 +1,16 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.Database.DocumentDatabase;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class displayDocument implements IOOperation {
 
     @Override
     public void oper(Database database, User user) {
-        ArrayList<Document> documents = database.getAllDocuments();
+//        ArrayList<Document> documents = database.getAllDocuments();
+        ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
         System.out.printf("%-50s %-40s %-30s %-20s %-10s %-10s %-20s\n",
                 "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
 

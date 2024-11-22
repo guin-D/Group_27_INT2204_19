@@ -5,10 +5,19 @@ public class Order {
     private User user;
     private double price;
     private int qty;
+    private String documentTitle;
+    private String userName;
 
     public Order(Document document, User user, double price, int qty) {
         this.document = document;
         this.user = user;
+        this.price = price;
+        this.qty = qty;
+    }
+
+    public Order(String document, String user, double price, int qty) {
+        this.documentTitle = document;
+        this.userName = user;
         this.price = price;
         this.qty = qty;
     }
@@ -46,6 +55,14 @@ public class Order {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public String getDocumentTitle() {
+        return documentTitle;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String toString() {

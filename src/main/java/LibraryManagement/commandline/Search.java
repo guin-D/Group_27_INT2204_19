@@ -1,5 +1,7 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.Database.DocumentDatabase;
+
 import java.util.Scanner;
 
 public class Search implements IOOperation {
@@ -8,13 +10,16 @@ public class Search implements IOOperation {
     public void oper(Database database, User user) {
         System.out.println("\nEnter document title: ");
         Scanner s = new Scanner(System.in);
-        String name = s.nextLine();
+        String documentTitle = s.nextLine();
 
-        int i = database.getDocument(name);
-        if (i > -1) {
-            System.out.println("\n" + database.getDocument(i).toString() + "\n");
-        } else {
-            System.out.println("Document dosen't exist!\n");
+//        int i = database.getDocument(documentTitle);
+        Document find = new Document();
+        find.setTitle(documentTitle);
+        Document document = DocumentDatabase.getInstance().selectBy(find);
+        try {
+            System.out.println("\n" + document.toString() + "\n");
+        } catch(Exception e) {
+            System.out.println("Document doesn't exist!\n");
         }
 
         user.menu(database, user);

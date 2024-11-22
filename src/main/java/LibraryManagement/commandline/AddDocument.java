@@ -1,5 +1,7 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.Database.DocumentDatabase;
+
 import java.util.Scanner;
 
 public class AddDocument implements IOOperation {
@@ -37,7 +39,8 @@ public class AddDocument implements IOOperation {
 
             System.out.println("Enter description: ");
             document.setDescription(s.nextLine());
-            database.AddDocument(document);
+            DocumentDatabase.getInstance().insert(document);
+//            database.AddDocument(document);
             System.out.println("Document added successfully\n");
             user.menu(database, user);
             s.close();
