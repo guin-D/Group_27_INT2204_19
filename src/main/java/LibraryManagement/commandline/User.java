@@ -33,6 +33,15 @@ public abstract class User {
         return password;
     }
 
+    public String getAccessLevel() {
+        return accessLevel;
+    }
+
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
     abstract public void menu(Database database, User user);
 
     abstract public String toString();

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -110,7 +111,7 @@ public class Database {
             String[] a1 = text1.split("<NewUser/>");
             for (String s : a1) {
                 String[] a2 = s.split("<N/>");
-                if (a2[4].matches("Admin")) {
+                if (a2[3].matches("Admin")) {
                     User user = new Admin(a2[0], a2[1], a2[2], a2[3]);
                     users.add(user);
                     usernames.add(user.getName());

@@ -13,12 +13,15 @@
     <children>
         <HBox prefHeight="30.0" prefWidth="1210.0" spacing="30.0" AnchorPane.topAnchor="10.0">
             <children>
-                <ComboBox fx:id="sortComboBox" prefHeight="32.0" prefWidth="120.0" promptText="All books"
+                <ComboBox fx:id="filterSearch" prefHeight="32.0" prefWidth="120.0" promptText="All books"
                           style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: #FFFFFF;">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value=""/>
-                            <String fx:value="Oldest"/>
+                            <String fx:value="All books"/>
+                            <String fx:value="Title"/>
+                            <String fx:value="Author initial"/>
+                            <String fx:value="Publisher name"/>
+                            <String fx:value="ISBN"/>
                         </FXCollections>
                     </items>
                 </ComboBox>

@@ -13,9 +13,9 @@ public class CalculateFine implements IOOperation {
 
         for (Borrowing b : database.getBrws()) {
             if (b.getDocument().getTitle().matches(documentname) && b.getUser().getName().matches(user.getName())) {
-                if (b.getDaysleft() > 0) {
+                if (b.getDaysLeft() > 0) {
                     System.out.println("You are late!\n"
-                            + " You have to pay " + b.getDaysleft() * 50 + " as fine");
+                            + " You have to pay " + b.getDaysLeft() * 50 + " as fine");
                 } else {
                     System.out.println("You don't have to pay fine\n");
                 }

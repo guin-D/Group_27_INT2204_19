@@ -1,8 +1,9 @@
 package LibraryManagement;
 
+import LibraryManagement.Database.UserDatabase;
 import LibraryManagement.commandline.*;
 
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LibraryCommandLine {
@@ -24,37 +25,55 @@ public class LibraryCommandLine {
                 break;
 
             case 2:
-                newuser();
+                newUser();
                 break;
 
         }
     }
 
 
-    private static void login() {
+    public static void login() {
         System.out.println("Enter phone number: ");
-        String phonenumber = s.next();
+        String phoneNumber = s.next();
         System.out.println("Enter password: ");
         String password = s.next();
-        int n = database.login(phonenumber, password);
-        if (n != -1) {
-            User user = database.getUser(n);
+
+        ArrayList<User> users = UserDatabase.getInstance().selectAll();
+        int i = -1;
+        for(User u: users) {
+            if(u.getPhonenumber().matches(phoneNumber) && u.getPassword().matches(password)) {
+                i = users.indexOf(u);
+                break;
+            }
+        }
+        if(i != -1) {
+            User user = users.get(i);
             user.menu(database, user);
         } else {
-            System.out.println("User dosen't exist!");
+            System.out.println("User doesn't exist!");
         }
+
+
+//        int n = database.login(phoneNumber, password);
+//        System.out.println(n);
+//        if (n != -1) {
+//            User user = database.getUser(n);
+//            user.menu(database, user);
+//        } else {
+//            System.out.println("User doesn't exist!");
+//        }
     }
 
-    private static void newuser() {
+    public static void newUser() {
         System.out.println("Enter name: ");
         s.nextLine();
         String name = s.nextLine();
         if (database.userExists(name)) {
             System.out.println("User exist!");
-            newuser();
+            newUser();
         }
         System.out.println("Enter phone number: ");
-        String phonenumber = s.next();
+        String phoneNumber = s.next();
         System.out.println("Enter password: ");
         String password = s.next();
         System.out.println("1. Admin\n2. Normal User");
@@ -62,13 +81,14 @@ public class LibraryCommandLine {
         User user;
         if (n2 == 1) {
             String accessLevel = "Admin";
-            user = new Admin(name, phonenumber, password, accessLevel);
+            user = new Admin(name, phoneNumber, password, accessLevel);
         } else {
             String accessLevel = "Normal";
-            user = new NormalUser(name, phonenumber, password, accessLevel);
+            user = new NormalUser(name, phoneNumber, password, accessLevel);
         }
-        database.AddUser(user);
-
+        UserDatabase.getInstance().insert(user);
+//        database.AddUser(user);
+        System.out.println("Create new user successful");
         user.menu(database, user);
     }
 }

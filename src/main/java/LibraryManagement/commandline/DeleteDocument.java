@@ -1,5 +1,7 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.Database.DocumentDatabase;
+
 import java.util.Scanner;
 
 public class DeleteDocument implements IOOperation {
@@ -8,14 +10,18 @@ public class DeleteDocument implements IOOperation {
     public void oper(Database database, User user) {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter document title: ");
-        String bookname = s.nextLine();
+        String documentTitle = s.nextLine();
 
-        int i = database.getDocument(bookname);
-        if (i != -1) {
-            database.deleteDocument(i);
+//        int i = database.getDocument(documentTitle);
+        Document find = new Document();
+        find.setTitle(documentTitle);
+
+        try {
+//            database.deleteDocument(i);
+            DocumentDatabase.getInstance().remove(find);
             System.out.println("Document deleted successfully!\n");
-        } else {
-            System.out.println("Document dosen't exist!\n");
+        } catch(Exception e) {
+            System.out.println("Document doesn't exist!\n");
         }
 
         user.menu(database, user);

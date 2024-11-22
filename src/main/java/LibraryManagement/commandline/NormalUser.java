@@ -49,6 +49,7 @@ public class NormalUser extends User {
         s.close();
     }
 
+
     public String toString() {
         return name + "<N/>" + phonenumber + "<N/>" + password + "<N/>" + "Normal";
     }

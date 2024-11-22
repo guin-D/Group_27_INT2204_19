@@ -1,5 +1,7 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.LibraryCommandLine;
+
 import java.util.Scanner;
 
 public class Exit implements IOOperation {
@@ -22,54 +24,16 @@ public class Exit implements IOOperation {
             int num = s.nextInt();
             switch (num) {
                 case 1:
-                    login();
+                    LibraryCommandLine.login();
                     break;
 
                 case 2:
-                    newuser();
+                    LibraryCommandLine.newUser();
                     break;
 
             }
         } else {
             user.menu(database, user);
         }
-
-    }
-
-    private void login() {
-        System.out.println("Enter phone number: ");
-        String phonenumber = s.next();
-        System.out.println("Enter email: ");
-        String email = s.next();
-        int n = database.login(phonenumber, email);
-        if (n != -1) {
-            User user = database.getUser(n);
-            user.menu(database, user);
-        } else {
-            System.out.println("User dosen't exist!");
-        }
-    }
-
-    private void newuser() {
-        System.out.println("Enter name: ");
-        s.nextLine();
-        String name = s.nextLine();
-        System.out.println("Enter phone number: ");
-        String phonenumber = s.next();
-        System.out.println("Enter email: ");
-        String email = s.next();
-        System.out.println("Enter password: ");
-        String password = s.next();
-        System.out.println("1. Admin\n2. Normal User");
-        int n2 = s.nextInt();
-        User user;
-        if (n2 == 1) {
-            user = new Admin(name, phonenumber, password, "Admin");
-        } else {
-            user = new NormalUser(name, phonenumber, password, "Normal");
-        }
-        database.AddUser(user);
-
-        user.menu(database, user);
     }
 }

@@ -47,11 +47,15 @@ public class Admin extends User {
         System.out.println("8. Display User Info");
         System.out.println("9. Exit");
 
-        Scanner s = new Scanner(System.in);
-        int n = s.nextInt();
+        try {
+            Scanner s = new Scanner(System.in);
+            int n = s.nextInt();
 
-        this.operations[n - 1].oper(database, user);
-        s.close();
+            this.operations[n - 1].oper(database, user);
+            s.close();
+        } catch (Exception e) {
+            System.out.println("Please enter the number");
+        }
     }
 
     public String toString() {
