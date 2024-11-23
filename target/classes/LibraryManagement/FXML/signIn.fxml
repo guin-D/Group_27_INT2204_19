@@ -7,36 +7,50 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="524.0" prefWidth="320.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.signIn">
+<AnchorPane prefHeight="524.0" prefWidth="320.0"
+            style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-radius: 10;"
+            xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="LibraryManagement.controllers.signIn">
     <children>
-        <Label layoutX="40.0" layoutY="48.0" style="-fx-text-fill: #203169; -fx-font-weight: Bold; -fx-font-family: Georgia;" text="Sign in">
+        <Label layoutX="40.0" layoutY="48.0"
+               style="-fx-text-fill: #203169; -fx-font-weight: Bold; -fx-font-family: Georgia;" text="Sign in">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Label>
-      <Button fx:id="signUp1" layoutX="135.0" layoutY="40.0" mnemonicParsing="false" onAction="#showSignUp" style="-fx-background-color: #00000000;" text="Sign up" textFill="#d6ddf7">
-         <font>
-            <Font name="Georgia Bold" size="24.0" />
-         </font>
-      </Button>
-        <Text fill="#203169" layoutX="20.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Georgia; -fx-font-weight: Bold;" text="Phone number">
+        <Button fx:id="signUp1" layoutX="135.0" layoutY="40.0" mnemonicParsing="false" onAction="#showSignUp"
+                style="-fx-background-color: #00000000;" text="Sign up" textFill="#d6ddf7">
             <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Text>
-        <TextField fx:id="phoneNumber" layoutX="20.0" layoutY="160.0" prefHeight="30.0" prefWidth="280.0" />
-        <Text fill="#203169" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Georgia; -fx-font-weight: Bold;" text="Password" />
-        <TextField fx:id="password" layoutX="20.0" layoutY="250.0" prefHeight="30.0" prefWidth="280.0" />
-        <Text fill="#203169" layoutX="205.0" layoutY="300.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="forget password?" />
-        <Button fx:id="signIn" focusTraversable="false" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" style="-fx-background-color: #203169; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;" text="Sign in">
-            <font>
-                <Font name="System Bold" size="20.0" />
+                <Font name="Georgia Bold" size="24.0"/>
             </font>
         </Button>
-        <Text layoutX="20.0" layoutY="425.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-        <Button fx:id="signUp2" layoutX="230.0" layoutY="408.0" mnemonicParsing="false" onAction="#showSignUp" prefHeight="30.0" prefWidth="67.0" style="-fx-background-color: #00000000;" text="Sign up" textFill="#203169" underline="true">
+        <Text fill="#203169" layoutX="20.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              style="-fx-font-family: Georgia; -fx-font-weight: Bold;" text="Phone number">
             <font>
-                <Font size="14.0" />
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="phoneNumber" layoutX="20.0" layoutY="160.0" prefHeight="30.0" prefWidth="280.0"/>
+        <Text fill="#203169" layoutX="20.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              style="-fx-font-family: Georgia; -fx-font-weight: Bold;" text="Password"/>
+        <TextField fx:id="password" layoutX="20.0" layoutY="250.0" prefHeight="30.0" prefWidth="280.0"/>
+        <Text fill="#203169" layoutX="205.0" layoutY="300.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="forget password?"/>
+        <Button fx:id="signIn" focusTraversable="false" layoutX="20.0" layoutY="360.0" mnemonicParsing="false"
+                prefHeight="40.0" prefWidth="280.0"
+                style="-fx-background-color: #203169; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;" text="Sign in"
+                onAction="#handleSignIn">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Button>
+        <Text layoutX="20.0" layoutY="425.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Don't have an account?"/>
+        <Button fx:id="signUp2" layoutX="230.0" layoutY="408.0" mnemonicParsing="false" onAction="#showSignUp"
+                prefHeight="30.0" prefWidth="67.0" style="-fx-background-color: #00000000;" text="Sign up"
+                textFill="#203169" underline="true">
+            <font>
+                <Font size="14.0"/>
             </font>
         </Button>
     </children>

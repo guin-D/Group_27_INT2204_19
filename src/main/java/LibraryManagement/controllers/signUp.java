@@ -1,5 +1,6 @@
 package LibraryManagement.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -41,6 +42,13 @@ public class signUp {
     public void showSignIn() {
         if (start != null) {
             start.showSignIn();
+        }
+    }
+
+    @FXML
+    public void handleSignUp(ActionEvent event) {
+        if (start != null) {
+            start.handleSignUp(event, name.getText(), phoneNumber.getText(), password.getText(), accessLevel.getValue());
         }
     }
 }

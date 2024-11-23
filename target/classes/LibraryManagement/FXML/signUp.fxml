@@ -51,7 +51,7 @@
                    style="-fx-background-color: #00000000;" value="User"/>
         <Button fx:id="signUp" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" prefHeight="40.0"
                 prefWidth="280.0" style="-fx-background-color: #203169; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;"
-                text="Sign up">
+                text="Sign up" onAction="#handleSignUp">
             <font>
                 <Font name="System Bold" size="20.0"/>
             </font>

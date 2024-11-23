@@ -1,5 +1,7 @@
 package LibraryManagement.controllers;
 
+import LibraryManagement.commandline.Database;
+import LibraryManagement.commandline.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class home {
-
+public abstract class UserController {
     @FXML
     public Pane main;
 
@@ -35,18 +36,27 @@ public class home {
     @FXML
     private Button logout;
 
+    private Database database;
+    private User user;
+
     public void initialize() {
         showDashboard();
     }
 
-    public void showAccount() {
+    public void setUser(Database database, User user) {
+        this.database = database;
+        this.user = user;
+    }
+
+    @FXML
+    public void showAccount(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/account.fxml"));
             Parent accountPane = loader.load();
 
             // Take the Controller of account and transmit the object 'home'
             account accountController = loader.getController();
-            accountController.setHome(this);
+            accountController.setUser(this);
 
             main.getChildren().clear();
             main.getChildren().setAll(accountPane);
@@ -56,6 +66,7 @@ public class home {
     }
 
 
+    @FXML
     public void showDashboard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/dashboard.fxml"));
@@ -63,55 +74,10 @@ public class home {
 
             // Take the Controller of dashboard and transmit the object 'home'
             dashboard dashboardController = loader.getController();
-            dashboardController.setHome(this);
+            dashboardController.setUser(this);
 
             main.getChildren().clear();
             main.getChildren().setAll(dashboardPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showBorrow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/borrow.fxml"));
-            Parent borrowPane = loader.load();
-
-            borrow borrowController = loader.getController();
-            borrowController.setHome(this);
-
-            main.getChildren().clear();
-            main.getChildren().setAll(borrowPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showMember() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/members.fxml"));
-            Parent memberPane = loader.load();
-
-            members memberController = loader.getController();
-            memberController.setHome(this);
-
-            main.getChildren().clear();
-            main.getChildren().setAll(memberPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showResource() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/resources.fxml"));
-            Parent resourcePane = loader.load();
-
-            resources resourcesController = loader.getController();
-            resourcesController.setHome(this);
-
-            main.getChildren().clear();
-            main.getChildren().setAll(resourcePane);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,5 +96,4 @@ public class home {
             e.printStackTrace();
         }
     }
-
 }

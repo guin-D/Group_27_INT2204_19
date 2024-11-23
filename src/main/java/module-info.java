@@ -11,7 +11,7 @@ module org.example.librarymanagementsystem {
     requires java.net.http;
     requires java.sql;
     requires java.desktop;
-    requires mysql.connector.java;
+    requires mysql.connector.j;
 
     exports LibraryManagement.commandline;
     opens LibraryManagement.commandline to javafx.fxml;
@@ -21,6 +21,4 @@ module org.example.librarymanagementsystem {
 
     exports LibraryManagement.controllers;
     opens LibraryManagement.controllers to javafx.fxml;
-
-
 }

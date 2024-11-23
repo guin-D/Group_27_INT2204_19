@@ -1,5 +1,6 @@
 package LibraryManagement.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,7 +27,6 @@ public class signIn {
         this.start = start;
 
     }
-    
 
     @FXML
     public void showSignUp() {
@@ -34,5 +34,11 @@ public class signIn {
             start.showSignUp();
         }
     }
-
+    
+    @FXML
+    public void handleSignIn(ActionEvent event) {
+        if (start != null) {
+            start.handleSignIn(event, phoneNumber.getText(), password.getText());
+        }
+    }
 }

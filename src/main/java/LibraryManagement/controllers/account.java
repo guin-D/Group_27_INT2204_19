@@ -1,10 +1,10 @@
 package LibraryManagement.controllers;
 
 public class account {
-    private home home;
+    private UserController user;
 
-    public void setHome(home home) {
-        this.home = home;
+    public void setUser(UserController user) {
+        this.user = user;
 
     }
 }

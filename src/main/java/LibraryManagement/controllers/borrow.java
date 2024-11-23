@@ -1,10 +1,11 @@
 package LibraryManagement.controllers;
 
 public class borrow {
-    private home home;
 
-    public void setHome(home home) {
-        this.home = home;
+    private UserController user;
+
+    public void setUser(UserController user) {
+        this.user = user;
 
     }
 }
