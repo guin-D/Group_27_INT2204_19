@@ -48,7 +48,7 @@ public class LibraryCommandLine {
         }
         if(i != -1) {
             User user = users.get(i);
-            user.menu(database, user);
+            user.menu(user);
         } else {
             System.out.println("User doesn't exist!");
         }
@@ -68,7 +68,18 @@ public class LibraryCommandLine {
         System.out.println("Enter name: ");
         s.nextLine();
         String name = s.nextLine();
-        if (database.userExists(name)) {
+
+        ArrayList<User> users = UserDatabase.getInstance().selectAll();
+
+        boolean f = false;
+        for (User user : users) {
+            if (user.getName().toLowerCase().matches(name.toLowerCase())) {
+                f = true;
+                break;
+            }
+        }
+
+        if (f) {
             System.out.println("User exist!");
             newUser();
         }
@@ -87,8 +98,7 @@ public class LibraryCommandLine {
             user = new NormalUser(name, phoneNumber, password, accessLevel);
         }
         UserDatabase.getInstance().insert(user);
-//        database.AddUser(user);
         System.out.println("Create new user successful");
-        user.menu(database, user);
+        user.menu(user);
     }
 }

@@ -36,7 +36,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void menu(Database database, User user) {
+    public void menu(User user) {
         System.out.println("1. Display Documents");
         System.out.println("2. Add Document");
         System.out.println("3. Delete Document");
@@ -51,7 +51,7 @@ public class Admin extends User {
             Scanner s = new Scanner(System.in);
             int n = s.nextInt();
 
-            this.operations[n - 1].oper(database, user);
+            this.operations[n - 1].oper(user);
             s.close();
         } catch (Exception e) {
             System.out.println("Please enter the number");

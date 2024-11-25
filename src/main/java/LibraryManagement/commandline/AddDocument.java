@@ -2,22 +2,32 @@ package LibraryManagement.commandline;
 
 import LibraryManagement.Database.DocumentDatabase;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddDocument implements IOOperation {
     @Override
-    public void oper(Database database, User user) {
+    public void oper(User user) {
         Scanner s = new Scanner(System.in);
-        Document document = new Document();
-
         System.out.println("\nEnter document title: ");
-        String title = s.nextLine();
-        if (database.getDocument(title) > -1) {
+        String documentName = s.nextLine();
+
+        ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
+        int i = -1;
+
+        for (Document document : documents) {
+            if (document.getTitle().matches(documentName)) {
+                i = documents.indexOf(document);
+            }
+        }
+
+        if (i > -1) {
             System.out.println("There is document with this name!\n");
-            user.menu(database, user);
+            user.menu(user);
             return;
         } else {
-            document.setTitle(title);
+            Document document = documents.get(i);
+            document.setTitle(documentName);
 
             System.out.println("Enter document author: ");
             document.setAuthor(s.nextLine());
@@ -42,7 +52,7 @@ public class AddDocument implements IOOperation {
             DocumentDatabase.getInstance().insert(document);
 //            database.AddDocument(document);
             System.out.println("Document added successfully\n");
-            user.menu(database, user);
+            user.menu(user);
             s.close();
         }
     }

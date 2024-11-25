@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class UpdateDocument implements IOOperation {
     @Override
-    public void oper(Database database, User user) {
+    public void oper(User user) {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the document title: ");
         String documentTitle = s.nextLine();
@@ -35,6 +35,6 @@ public class UpdateDocument implements IOOperation {
         } catch (Exception e){
             System.out.println("Document doesn't exist!\n");
         }
-        user.menu(database, user);
+        user.menu(user);
     }
 }

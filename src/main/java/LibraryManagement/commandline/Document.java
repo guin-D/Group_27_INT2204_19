@@ -15,9 +15,6 @@ public class Document {
     public Document() {
     }
 
-    ;
-
-
     public Document(String title, String author, String publisher,
                     String genre, int qty, double price, int brwcopiers, String description) {
         this.title = title;

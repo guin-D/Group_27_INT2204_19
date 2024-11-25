@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class displayDocument implements IOOperation {
 
     @Override
-    public void oper(Database database, User user) {
+    public void oper(User user) {
 //        ArrayList<Document> documents = database.getAllDocuments();
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
         System.out.printf("%-50s %-40s %-30s %-20s %-10s %-10s %-20s\n",
@@ -22,7 +22,7 @@ public class displayDocument implements IOOperation {
 
         System.out.println("\n");
 
-        user.menu(database, user);
+        user.menu(user);
         System.out.println("End ... ");
 
     }

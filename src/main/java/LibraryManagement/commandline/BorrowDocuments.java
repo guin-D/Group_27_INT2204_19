@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class BorrowDocuments implements IOOperation {
 
     @Override
-    public void oper(Database database, User user) {
+    public void oper(User user) {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the document title: ");
         String documentName = s.nextLine();
@@ -78,7 +78,7 @@ public class BorrowDocuments implements IOOperation {
 //        } else {
 //            System.out.println("Document doesn't exist!\n");
 //        }
-        user.menu(database, user);
+        user.menu(user);
     }
 
 }

@@ -1,6 +1,5 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.commandline.Database;
 import LibraryManagement.commandline.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,8 +42,7 @@ public abstract class UserController {
         showDashboard();
     }
 
-    public void setUser(Database database, User user) {
-        this.database = database;
+    public void setUser(User user) {
         this.user = user;
     }
 

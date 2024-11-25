@@ -1,12 +1,12 @@
 package LibraryManagement.commandline;
 
 public class DisplayUserInfo implements IOOperation {
-    public void oper(Database database, User user) {
+    public void oper(User user) {
         System.out.println("User name: " + user.getName()
                 + "\nPhone number: " + user.getPhonenumber() + "\nAccess level: "
                 + user.accessLevel);
         System.out.println("\n");
 
-        user.menu(database, user);
+        user.menu(user);
     }
 }
