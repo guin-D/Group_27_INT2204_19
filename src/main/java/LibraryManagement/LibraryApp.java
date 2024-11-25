@@ -1,7 +1,5 @@
 package LibraryManagement;
 
-import LibraryManagement.commandline.Database;
-import LibraryManagement.controllers.start;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

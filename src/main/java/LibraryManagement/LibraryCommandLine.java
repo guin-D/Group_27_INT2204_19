@@ -68,7 +68,18 @@ public class LibraryCommandLine {
         System.out.println("Enter name: ");
         s.nextLine();
         String name = s.nextLine();
-        if (database.userExists(name)) {
+
+        ArrayList<User> users = UserDatabase.getInstance().selectAll();
+
+        boolean f = false;
+        for (User user : users) {
+            if (user.getName().toLowerCase().matches(name.toLowerCase())) {
+                f = true;
+                break;
+            }
+        }
+
+        if (f) {
             System.out.println("User exist!");
             newUser();
         }

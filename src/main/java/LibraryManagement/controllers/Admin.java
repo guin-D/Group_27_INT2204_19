@@ -1,7 +1,5 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.commandline.Database;
-import LibraryManagement.commandline.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
