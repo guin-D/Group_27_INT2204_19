@@ -49,7 +49,7 @@ public abstract class User {
         this.phonenumber = phonenumber;
     }
 
-    abstract public void menu(Database database, User user);
+    abstract public void menu(User user);
 
     abstract public String toString();
 

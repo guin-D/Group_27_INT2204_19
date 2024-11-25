@@ -1,4 +1,4 @@
 package LibraryManagement.utils;
 
-public class QAcode {
+public class QRcode {
 }

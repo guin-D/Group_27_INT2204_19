@@ -48,7 +48,7 @@ public class LibraryCommandLine {
         }
         if(i != -1) {
             User user = users.get(i);
-            user.menu(database, user);
+            user.menu(user);
         } else {
             System.out.println("User doesn't exist!");
         }
@@ -87,8 +87,7 @@ public class LibraryCommandLine {
             user = new NormalUser(name, phoneNumber, password, accessLevel);
         }
         UserDatabase.getInstance().insert(user);
-//        database.AddUser(user);
         System.out.println("Create new user successful");
-        user.menu(database, user);
+        user.menu(user);
     }
 }

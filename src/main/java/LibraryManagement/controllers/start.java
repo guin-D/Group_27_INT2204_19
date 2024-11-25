@@ -117,7 +117,15 @@ public class start {
         Task<Void> signUpTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                if (database.userExists(name)) {
+                ArrayList<User> users = UserDatabase.getInstance().selectAll();
+                boolean f = false;
+                for (User user : users) {
+                    if (user.getName().toLowerCase().matches(name.toLowerCase())) {
+                        f = true;
+                        break;
+                    }
+                }
+                if (f) {
                     System.out.println("User already exists!");
                     return null;
                 }

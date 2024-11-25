@@ -43,8 +43,7 @@ public abstract class UserController {
         showDashboard();
     }
 
-    public void setUser(Database database, User user) {
-        this.database = database;
+    public void setUser(User user) {
         this.user = user;
     }
 

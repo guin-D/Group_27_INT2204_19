@@ -5,14 +5,11 @@ import LibraryManagement.LibraryCommandLine;
 import java.util.Scanner;
 
 public class Exit implements IOOperation {
-
     Scanner s;
-    Database database;
     User user;
 
     @Override
-    public void oper(Database database, User user) {
-        this.database = database;
+    public void oper(User user) {
         this.user = user;
         System.out.println("\nAre you sure that you want to quit?\n"
                 + "1. Yes\n2. Main Menu");
@@ -33,7 +30,7 @@ public class Exit implements IOOperation {
 
             }
         } else {
-            user.menu(database, user);
+            user.menu(user);
         }
     }
 }
