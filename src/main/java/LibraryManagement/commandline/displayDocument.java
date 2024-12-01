@@ -2,7 +2,6 @@ package LibraryManagement.commandline;
 
 import LibraryManagement.Database.DocumentDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class displayDocument implements IOOperation {
@@ -17,7 +16,7 @@ public class displayDocument implements IOOperation {
         for (Document b : documents) {
             System.out.printf("%-50s %-40s %-30s %-20s %-10d %-10.2f %-20d\n",
                     b.getTitle(), b.getAuthor(), b.getPublisher(),
-                    b.getISBN(), b.getQty(), b.getPrice(), b.getBrwcopiers());
+                    b.getIsbn(), b.getQty(), b.getPrice(), b.getBrwcopiers());
         }
 
         System.out.println("\n");

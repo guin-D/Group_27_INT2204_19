@@ -1,4 +1,4 @@
-module org.example.librarymanagementsystem {
+module LibraryManagementSystem {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -7,18 +7,15 @@ module org.example.librarymanagementsystem {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires com.fasterxml.jackson.databind;
+    requires mysql.connector.j;
     requires java.net.http;
+    requires com.fasterxml.jackson.databind;
     requires java.sql;
     requires java.desktop;
-    requires mysql.connector.j;
+    requires jcommander;
 
-    exports LibraryManagement.commandline;
-    opens LibraryManagement.commandline to javafx.fxml;
-
-    exports LibraryManagement;
-    opens LibraryManagement to javafx.fxml;
-
-    exports LibraryManagement.controllers;
+    opens LibraryManagement.FXML to javafx.fxml;
+    opens LibraryManagement to javafx.graphics;
     opens LibraryManagement.controllers to javafx.fxml;
+    exports LibraryManagement.controllers to javafx.fxml;
 }

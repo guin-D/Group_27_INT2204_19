@@ -22,7 +22,7 @@ public class UpdateDocument implements IOOperation {
             System.out.println("Publisher after update: ");
             document.setPublisher(s.nextLine());
             System.out.println("ISBN after update: ");
-            document.setISBN(s.nextLine());
+            document.setIsbn(s.nextLine());
             System.out.println("Qty after update: ");
             document.setQty(s.nextInt());
             System.out.println("Price after update: ");
@@ -32,7 +32,7 @@ public class UpdateDocument implements IOOperation {
 
 //            database.updateDocument(i, document);
             DocumentDatabase.getInstance().update(document);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Document doesn't exist!\n");
         }
         user.menu(user);

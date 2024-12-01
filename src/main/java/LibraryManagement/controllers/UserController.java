@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -17,44 +16,17 @@ public abstract class UserController {
     @FXML
     public Pane main;
 
-    @FXML
-    private Button account;
+    public User user;
 
-    @FXML
-    private Button dashboard;
-
-    @FXML
-    private Button borrow;
-
-    @FXML
-    private Button member;
-
-    @FXML
-    private Button resources;
-
-    @FXML
-    private Button logout;
-
-    private Database database;
-    private User user;
-
-    public void initialize() {
-        showDashboard();
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     @FXML
     public void showAccount(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/account.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Account.fxml"));
             Parent accountPane = loader.load();
 
-            // Take the Controller of account and transmit the object 'home'
-            account accountController = loader.getController();
-            accountController.setUser(this);
+            Account accountController = loader.getController();
+            accountController.setUser(this.user);
 
             main.getChildren().clear();
             main.getChildren().setAll(accountPane);
@@ -67,12 +39,11 @@ public abstract class UserController {
     @FXML
     public void showDashboard() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Dashboard.fxml"));
             Parent dashboardPane = loader.load();
 
-            // Take the Controller of dashboard and transmit the object 'home'
-            dashboard dashboardController = loader.getController();
-            dashboardController.setUser(this);
+            Dashboard dashboardController = loader.getController();
+            dashboardController.setUser(user);
 
             main.getChildren().clear();
             main.getChildren().setAll(dashboardPane);
@@ -84,7 +55,7 @@ public abstract class UserController {
     @FXML
     public void logout(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/start.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Start.fxml"));
             Scene startScene = new Scene(loader.load());
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -92,6 +63,13 @@ public abstract class UserController {
             currentStage.setScene(startScene);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        if (main != null) {
+            showDashboard();
         }
     }
 }

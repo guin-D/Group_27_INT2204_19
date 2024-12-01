@@ -25,12 +25,11 @@ public class DocumentDatabase {
                     + " VALUE('" + document.getTitle() + "', '"
                     + document.getAuthor() + "', '"
                     + document.getPublisher() + "', '"
-                    + document.getISBN() + "', '"
+                    + document.getIsbn() + "', '"
                     + document.getStatus() + "', '"
                     + document.getQty() + "', '"
                     + document.getPrice() + "', '"
-                    + document.getBrwcopiers() + "', '"
-                    + document.getDescription() + "')";
+                    + document.getBrwcopiers() + "')";
 
             int done = statement.executeUpdate(sql);
 
@@ -50,12 +49,11 @@ public class DocumentDatabase {
 
             String sql = "UPDATE document"
                     + " SET " + "author = '" + document.getAuthor() + "',"
-                    + "ISBN = '" + document.getISBN() + "',"
+                    + "ISBN = '" + document.getIsbn() + "',"
                     + "Status = '" + document.getStatus() + "',"
                     + "qty = '" + document.getQty() + "',"
                     + "price = '" + document.getPrice() + "',"
-                    + "brwcopiers = '" + document.getBrwcopiers() + "',"
-                    + "description = '" + document.getDescription() + "'"
+                    + "brwcopiers = '" + document.getBrwcopiers() + "'"
                     + "WHERE title = '" + document.getTitle() + "'";
 
             done = statement.executeUpdate(sql);
@@ -98,7 +96,7 @@ public class DocumentDatabase {
 
             ResultSet resultSet = statement.executeQuery(sql);
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
                 String publisher = resultSet.getString("publisher");
@@ -134,7 +132,7 @@ public class DocumentDatabase {
 
             ResultSet resultSet = statement.executeQuery(sql);
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
                 String publisher = resultSet.getString("publisher");

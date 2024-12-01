@@ -20,8 +20,8 @@ public class Admin extends User {
         };
     }
 
-    public Admin(String name, String phonenumber, String password, String accessLevel) {
-        super(name, phonenumber, password, accessLevel);
+    public Admin(String name, String phoneNumber, String password, String accessLevel) {
+        super(name, phoneNumber, password, accessLevel);
         this.operations = new IOOperation[]{
                 new displayDocument(),
                 new AddDocument(),
@@ -54,7 +54,7 @@ public class Admin extends User {
             this.operations[n - 1].oper(user);
             s.close();
         } catch (Exception e) {
-            System.out.println("Please enter the number");
+            System.out.println("Please enter the number\n");
         }
     }
 

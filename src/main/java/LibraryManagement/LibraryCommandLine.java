@@ -8,11 +8,9 @@ import java.util.Scanner;
 
 public class LibraryCommandLine {
     static Scanner s;
-    static Database database;
 
     public static void main(String[] args) {
-
-        database = new Database();
+        
         System.out.println("Welcome to Library Management System!");
 
         int num;
@@ -40,13 +38,13 @@ public class LibraryCommandLine {
 
         ArrayList<User> users = UserDatabase.getInstance().selectAll();
         int i = -1;
-        for(User u: users) {
-            if(u.getPhonenumber().matches(phoneNumber) && u.getPassword().matches(password)) {
+        for (User u : users) {
+            if (u.getPhonenumber().matches(phoneNumber) && u.getPassword().matches(password)) {
                 i = users.indexOf(u);
                 break;
             }
         }
-        if(i != -1) {
+        if (i != -1) {
             User user = users.get(i);
             user.menu(user);
         } else {

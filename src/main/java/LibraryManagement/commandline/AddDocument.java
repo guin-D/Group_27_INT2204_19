@@ -14,10 +14,12 @@ public class AddDocument implements IOOperation {
 
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
         int i = -1;
-
-        for (Document document : documents) {
-            if (document.getTitle().matches(documentName)) {
-                i = documents.indexOf(document);
+        if (documents != null) {
+            for (Document document : documents) {
+                if (document.getTitle().matches(documentName)) {
+                    i = documents.indexOf(document);
+                    break;
+                }
             }
         }
 
@@ -36,10 +38,12 @@ public class AddDocument implements IOOperation {
             document.setPublisher(s.nextLine());
 
             System.out.println("Enter ISBN: ");
-            document.setISBN(s.nextLine());
+            document.setIsbn(s.nextLine());
 
             System.out.println("Enter QTY: ");
             document.setQty(s.nextInt());
+
+            s.nextLine();
 
             System.out.println("Enter price: ");
             document.setPrice(s.nextDouble());
@@ -47,10 +51,10 @@ public class AddDocument implements IOOperation {
             System.out.println("Enter Borrowing copies: ");
             document.setBrwcopiers(s.nextInt());
 
-            System.out.println("Enter description: ");
-            document.setDescription(s.nextLine());
+            s.nextLine();
+            
+
             DocumentDatabase.getInstance().insert(document);
-//            database.AddDocument(document);
             System.out.println("Document added successfully\n");
             user.menu(user);
             s.close();

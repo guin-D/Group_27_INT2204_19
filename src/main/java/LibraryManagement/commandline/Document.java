@@ -5,12 +5,12 @@ public class Document {
     private String title;      //title
     private String author;    //author
     private String publisher; //publisher
-    private String ISBN;   //  Genre
+    private String isbn;   //  Genre
     private String status;    //Borrowing Status
     private int qty;          // Copies for sale
     private double price;     //price
     private int brwcopiers;   // Copies for borrowing
-    private String description;
+    private String imageLink;
 
     public Document() {
     }
@@ -20,22 +20,33 @@ public class Document {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.ISBN = genre;
+        this.isbn = genre;
         this.qty = qty;
         this.price = price;
         this.brwcopiers = brwcopiers;
-        this.description = description;
     }
+
+    public Document(String title, String author, String publisher,
+                    String isbn, int qty, double price, int brwcopiers, String description, String imageLink) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.qty = qty;
+        this.price = price;
+        this.brwcopiers = brwcopiers;
+        this.imageLink = imageLink;
+    }
+
 
     public String toString() {
         String text = "Document Title: " + title + "\n" +
                 "Document Author: " + author + "\n" +
                 "Document Publisher: " + publisher + "\n" +
-                "International Standard Book Number: " + ISBN + "\n" +
+                "International Standard Book Number: " + isbn + "\n" +
                 "Qty: " + String.valueOf(qty) + "\n" +
                 "Price: " + String.valueOf(price) + "\n" +
-                "Borrowing Copies: " + String.valueOf(brwcopiers) + "\n" +
-                "Description: " + description;
+                "Borrowing Copies: " + String.valueOf(brwcopiers) + "\n";
         return text;
     }
 
@@ -44,12 +55,11 @@ public class Document {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.ISBN = isbn;
+        this.isbn = isbn;
         this.status = status;
         this.qty = qty;
         this.price = price;
         this.brwcopiers = brwcopiers;
-        this.description = description;
     }
 
     public String getTitle() {
@@ -76,12 +86,12 @@ public class Document {
         this.publisher = publisher;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getStatus() {
@@ -116,17 +126,17 @@ public class Document {
         this.brwcopiers = brwcopiers;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public String toString2() {
         String text = title + "<N/>" + author + "<N/>" + publisher + "<N/>" +
-                ISBN + "<N/>" + String.valueOf(qty) + "<N/>" + String.valueOf(price) + "<N/>" + String.valueOf(brwcopiers) + "<N/>" + description + "<N/>";
+                isbn + "<N/>" + String.valueOf(qty) + "<N/>" + String.valueOf(price) + "<N/>" + String.valueOf(brwcopiers) + "<N/>";
         return text;
     }
 

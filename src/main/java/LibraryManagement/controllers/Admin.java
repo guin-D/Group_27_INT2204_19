@@ -1,6 +1,5 @@
 package LibraryManagement.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,14 +7,13 @@ import javafx.scene.Parent;
 import java.io.IOException;
 
 public class Admin extends UserController {
-    @FXML
-    public void showBorrow(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/borrow.fxml"));
-            Parent borrowPane = loader.load();
 
-            borrow borrowController = loader.getController();
-            borrowController.setUser(this);
+
+    @FXML
+    public void showBorrowHistory() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/BorrowHistory.fxml"));
+            Parent borrowPane = loader.load();
 
             main.getChildren().clear();
             main.getChildren().setAll(borrowPane);
@@ -25,13 +23,10 @@ public class Admin extends UserController {
     }
 
     @FXML
-    public void showMember(ActionEvent event) {
+    public void showMember() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/members.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Members.fxml"));
             Parent memberPane = loader.load();
-
-            members memberController = loader.getController();
-            memberController.setUser(this);
 
             main.getChildren().clear();
             main.getChildren().setAll(memberPane);
@@ -41,13 +36,13 @@ public class Admin extends UserController {
     }
 
     @FXML
-    public void showResource(ActionEvent event) {
+    public void showResource() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/resources.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Resources.fxml"));
             Parent resourcePane = loader.load();
 
-            resources resourcesController = loader.getController();
-            resourcesController.setUser(this);
+            Resources resources = loader.getController();
+            resources.setAdmin(this);
 
             main.getChildren().clear();
             main.getChildren().setAll(resourcePane);
@@ -56,5 +51,21 @@ public class Admin extends UserController {
         }
     }
 
+    @FXML
+    public void addBookAPI() {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/GoogleBookAPI.fxml"));
+            Parent bookAPIPane = loader.load();
+
+            GoogleBookAPI googleBookAPI = loader.getController();
+            googleBookAPI.setAdmin(this);
+
+            main.getChildren().clear();
+            main.getChildren().setAll(bookAPIPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

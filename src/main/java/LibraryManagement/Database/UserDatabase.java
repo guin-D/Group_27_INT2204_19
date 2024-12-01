@@ -24,7 +24,7 @@ public class UserDatabase {
                     + " VALUE('" + user.getName() + "', '"
                     + user.getPhonenumber() + "', '"
                     + user.getPassword() + "', '"
-                    + user.getAccessLevel()+ "')";
+                    + user.getAccessLevel() + "')";
 
             int done = statement.executeUpdate(sql);
 
@@ -43,6 +43,11 @@ public class UserDatabase {
         return 0;
     }
 
+    //todo
+    public int remove(String name) {
+        return 0;
+    }
+
     public ArrayList<User> selectAll() {
         ArrayList<User> users = new ArrayList<User>();
 
@@ -55,14 +60,14 @@ public class UserDatabase {
 
             ResultSet resultSet = statement.executeQuery(sql);
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String phoneNumber = resultSet.getString("phoneNumber");
                 String password = resultSet.getString("password");
                 String accessLevel = resultSet.getString("accessLevel");
 
                 User user;
-                if(accessLevel.matches("Admin")) {
+                if (accessLevel.matches("Admin")) {
                     user = new Admin(name, phoneNumber, password, accessLevel);
                 } else {
                     user = new NormalUser(name, phoneNumber, password, accessLevel);
