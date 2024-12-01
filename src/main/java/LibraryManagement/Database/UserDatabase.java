@@ -40,12 +40,27 @@ public class UserDatabase {
     }
 
     public int remove(User user) {
-        return 0;
+       return 0;
     }
 
     //todo
     public int remove(String name) {
-        return 0;
+        int done = 0;
+        try {
+            Connection connection = MySQL.getConnection();
+
+            Statement statement = connection.createStatement();
+
+            String sql = "DELETE FROM user "
+                    + "WHERE name = '" + name + "'";
+
+            done = statement.executeUpdate(sql);
+
+            MySQL.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 1;
     }
 
     public ArrayList<User> selectAll() {

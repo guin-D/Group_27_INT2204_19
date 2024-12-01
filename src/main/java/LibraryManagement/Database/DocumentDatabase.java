@@ -21,7 +21,7 @@ public class DocumentDatabase {
             Statement statement = connection.createStatement();
 
             String sql = "INSERT INTO document(title, author, publisher, ISBN, "
-                    + "status, qty, price, brwcopiers, description)"
+                    + "status, qty, price, brwcopiers, description, imageLink)"
                     + " VALUE('" + document.getTitle() + "', '"
                     + document.getAuthor() + "', '"
                     + document.getPublisher() + "', '"
@@ -29,7 +29,8 @@ public class DocumentDatabase {
                     + document.getStatus() + "', '"
                     + document.getQty() + "', '"
                     + document.getPrice() + "', '"
-                    + document.getBrwcopiers() + "')";
+                    + document.getBrwcopiers() + "', '"
+                    + document.getImageLink() + "')";
 
             int done = statement.executeUpdate(sql);
 
@@ -54,6 +55,7 @@ public class DocumentDatabase {
                     + "qty = '" + document.getQty() + "',"
                     + "price = '" + document.getPrice() + "',"
                     + "brwcopiers = '" + document.getBrwcopiers() + "'"
+                    + "imageLink = '" + document.getImageLink() + "'"
                     + "WHERE title = '" + document.getTitle() + "'";
 
             done = statement.executeUpdate(sql);
@@ -101,13 +103,13 @@ public class DocumentDatabase {
                 String author = resultSet.getString("author");
                 String publisher = resultSet.getString("publisher");
                 String ISBN = resultSet.getString("ISBN");
-                String status = resultSet.getString("status");
                 int qty = resultSet.getInt("qty");
                 double price = resultSet.getDouble("price");
                 int brwcopiers = resultSet.getInt("brwcopiers");
                 String description = resultSet.getString("description");
+                String imageLink = resultSet.getString("imageLink");
 
-                Document document = new Document(title, author, publisher, ISBN, status, qty, price, brwcopiers, description);
+                Document document = new Document(title, author, publisher, ISBN, qty, price, brwcopiers, description, imageLink);
                 documents.add(document);
             }
 
@@ -137,13 +139,13 @@ public class DocumentDatabase {
                 String author = resultSet.getString("author");
                 String publisher = resultSet.getString("publisher");
                 String ISBN = resultSet.getString("ISBN");
-                String status = resultSet.getString("status");
                 int qty = resultSet.getInt("qty");
                 double price = resultSet.getDouble("price");
                 int brwcopiers = resultSet.getInt("brwcopiers");
                 String description = resultSet.getString("description");
+                String imageLink = resultSet.getString("imageLink");
 
-                done = new Document(title, author, publisher, ISBN, status, qty, price, brwcopiers, description);
+                done = new Document(title, author, publisher, ISBN, qty, price, brwcopiers, description, imageLink);
 
             }
 
