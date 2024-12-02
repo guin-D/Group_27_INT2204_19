@@ -18,75 +18,68 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/23"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.BorrowHistory">
+<AnchorPane prefHeight="720.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.BorrowHistory">
     <children>
-        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="1210.0" spacing="30.0"
-              style="-fx-background-color: #F6F8FE;">
+        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="1210.0" spacing="30.0" style="-fx-background-color: #F6F8FE;">
             <children>
-                <ComboBox fx:id="filterSearch" prefHeight="28.0" prefWidth="150.0" promptText="All books"
-                          style="-fx-background-color: #FFFFFF; -fx-font-size: 14; -fx-text-fill: #203169;">
+                <ComboBox fx:id="filterSearch" prefHeight="28.0" prefWidth="150.0" promptText="All books" style="-fx-background-color: #FFFFFF; -fx-font-size: 14; -fx-text-fill: #203169;">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="All books"/>
-                            <String fx:value="Title"/>
-                            <String fx:value="Author initial"/>
-                            <String fx:value="Publisher name"/>
-                            <String fx:value="ISBN"/>
+                            <String fx:value="All books" />
+                            <String fx:value="Title" />
+                            <String fx:value="Author initial" />
+                            <String fx:value="Publisher name" />
+                            <String fx:value="ISBN" />
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <ComboBox fx:id="filterSearch1" prefHeight="28.0" prefWidth="150.0" promptText="Keywords"
-                          style="-fx-background-color: #FFFFFF; -fx-font-size: 14; -fx-text-fill: #203169;"
-                          value="Keywords">
+                <ComboBox fx:id="filterSearch1" prefHeight="28.0" prefWidth="150.0" promptText="Keywords" style="-fx-background-color: #FFFFFF; -fx-font-size: 14; -fx-text-fill: #203169;" value="Keywords">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Keywords"/>
-                            <String fx:value="ISBN"/>
+                            <String fx:value="Keywords" />
+                            <String fx:value="ISBN" />
                         </FXCollections>
                     </items>
                 </ComboBox>
                 <TextField prefWidth="250.0">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextField>
                 <Button mnemonicParsing="false" style="-fx-background-color: #203169;" text="Search" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>
-                                <Image url="@../Image/search.png"/>
+                                <Image url="@../Image/search.png" />
                             </image>
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Button>
-                <Region prefHeight="35.0" prefWidth="297.0"/>
+                <Region prefHeight="35.0" prefWidth="297.0" />
             </children>
             <padding>
-                <Insets left="10.0"/>
+                <Insets left="10.0" />
             </padding>
         </HBox>
         <Label layoutX="30.0" layoutY="90.0" text="All books" textFill="#203169">
             <font>
-                <Font name="Georgia Bold" size="20.0"/>
+                <Font name="Georgia Bold" size="20.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="10.0" layoutY="130.0" prefHeight="680.0" prefWidth="1210.0"
-                    style="-fx-background-color: #F6F8FE;">
+        <ScrollPane layoutX="10.0" layoutY="130.0" prefHeight="680.0" prefWidth="1210.0" style="-fx-background-color: #F6F8FE;">
             <content>
-                <GridPane fx:id="main" hgap="30.0" minWidth="100.0" prefHeight="250.0" prefWidth="1190.0"
-                          style="-fx-background-color: #F6F8FE;" vgap="30.0">
+                <GridPane fx:id="main" hgap="30.0" minWidth="100.0" prefWidth="1190.0" style="-fx-background-color: #F6F8FE;" vgap="30.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="277.5" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                 </GridPane>
             </content>
