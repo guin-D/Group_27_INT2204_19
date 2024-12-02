@@ -11,7 +11,6 @@ public class AddDocument implements IOOperation {
         Scanner s = new Scanner(System.in);
         System.out.println("\nEnter document title: ");
         String documentName = s.nextLine();
-
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
         int i = -1;
         if (documents != null) {
@@ -22,13 +21,11 @@ public class AddDocument implements IOOperation {
                 }
             }
         }
-
         if (i > -1) {
             System.out.println("There is document with this name!\n");
             user.menu(user);
-            return;
         } else {
-            Document document = documents.get(i);
+            Document document = new Document();
             document.setTitle(documentName);
 
             System.out.println("Enter document author: ");
@@ -43,16 +40,11 @@ public class AddDocument implements IOOperation {
             System.out.println("Enter QTY: ");
             document.setQty(s.nextInt());
 
-            s.nextLine();
-
             System.out.println("Enter price: ");
             document.setPrice(s.nextDouble());
 
             System.out.println("Enter Borrowing copies: ");
             document.setBrwcopiers(s.nextInt());
-
-            s.nextLine();
-            
 
             DocumentDatabase.getInstance().insert(document);
             System.out.println("Document added successfully\n");
