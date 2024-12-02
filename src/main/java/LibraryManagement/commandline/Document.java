@@ -16,18 +16,7 @@ public class Document {
     }
 
     public Document(String title, String author, String publisher,
-                    String genre, int qty, double price, int brwcopiers, String description) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = genre;
-        this.qty = qty;
-        this.price = price;
-        this.brwcopiers = brwcopiers;
-    }
-
-    public Document(String title, String author, String publisher,
-                    String isbn, int qty, double price, int brwcopiers, String description, String imageLink) {
+                    String isbn, int qty, double price, int brwcopiers, String imageLink) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -50,17 +39,6 @@ public class Document {
         return text;
     }
 
-    public Document(String title, String author, String publisher,
-                    String isbn, String status, int qty, double price, int brwcopiers, String description) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-        this.status = status;
-        this.qty = qty;
-        this.price = price;
-        this.brwcopiers = brwcopiers;
-    }
 
     public String getTitle() {
         return title;
@@ -125,6 +103,8 @@ public class Document {
     public void setBrwcopiers(int brwcopiers) {
         this.brwcopiers = brwcopiers;
     }
+
+
 
     public String getImageLink() {
         return imageLink;

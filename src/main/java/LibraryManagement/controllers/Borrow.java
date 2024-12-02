@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -72,8 +73,13 @@ public class Borrow extends NormalUserController {
         bookBox.setSpacing(10);
         bookBox.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 10;");
 
-        ImageView bookImage = new ImageView(getClass().getResource("/LibraryManagement/Image/" + document.getIsbn() + ".jpg").toExternalForm());
-        bookImage.setFitHeight(200);
+        ImageView bookImage = new ImageView();
+        bookImage.setFitWidth(128);
+        bookImage.setFitHeight(175);
+        if (document.getImageLink() != null && !document.getImageLink().isEmpty()) {
+            Image image = new Image(document.getImageLink(), true);
+            bookImage.setImage(image);
+        }
 
         VBox content = new VBox();
         content.setSpacing(10);
