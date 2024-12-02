@@ -67,6 +67,14 @@ public class UpdateDocument {
     }
 
     private void handleSave() {
+        currentDocument.setTitle(title.getText());
+        currentDocument.setIsbn(isbn.getText());
+        currentDocument.setAuthor(author.getText());
+        currentDocument.setPublisher(publisher.getText());
+        currentDocument.setBrwcopiers(Integer.parseInt(totalQuantity.getText()));
+        currentDocument.setQty(Integer.parseInt(totalOrder.getText()));
+        currentDocument.setPrice(Double.parseDouble(price.getText()));
+
         DocumentDatabase.getInstance().update(currentDocument);
 
         closeWindow();

@@ -48,14 +48,13 @@ public class DocumentDatabase {
             Statement statement = connection.createStatement();
 
             String sql = "UPDATE document"
-                    + " SET " + "author = '" + document.getAuthor() + "',"
-                    + "publisher = '" + document.getPublisher() + "',"
-                    + "ISBN = '" + document.getIsbn() + "',"
-                    + "qty = '" + document.getQty() + "',"
-                    + "price = '" + document.getPrice() + "',"
-                    + "brwcopiers = '" + document.getBrwcopiers() + "'"
-                    + "imageLink = '" + document.getImageLink() + "'"
-                    + "WHERE title = '" + document.getTitle() + "'";
+                    + " SET" + " author = '" + document.getAuthor() + "',"
+                    + " publisher = '" + document.getPublisher() + "',"
+                    + " ISBN = '" + document.getIsbn() + "',"
+                    + " qty = '" + document.getQty() + "',"
+                    + " price = '" + document.getPrice() + "',"
+                    + " brwcopiers = '" + document.getBrwcopiers() + "'"
+                    + " WHERE title = '" + document.getTitle() + "'";
 
             done = statement.executeUpdate(sql);
 
