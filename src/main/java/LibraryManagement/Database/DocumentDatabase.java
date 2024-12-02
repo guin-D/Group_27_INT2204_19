@@ -154,5 +154,33 @@ public class DocumentDatabase {
         return done;
     }
 
+    public Document getDocumentByISBN(String isbn) {
+        Document document = null;
+        try {
+            Connection connection = MySQL.getConnection();
+            Statement statement = connection.createStatement();
+
+            String sql = "SELECT * FROM document WHERE isbn = '" + isbn + "'";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            if (resultSet.next()) {
+                document = new Document();
+                document.setTitle(resultSet.getString("title"));
+                document.setIsbn(resultSet.getString("isbn"));
+                document.setAuthor(resultSet.getString("author"));
+                document.setPublisher(resultSet.getString("publisher"));
+                document.setBrwcopiers(resultSet.getInt("brwcopiers"));
+                document.setQty(resultSet.getInt("qty"));
+                document.setPrice(resultSet.getDouble("price"));
+                document.setImageLink(resultSet.getString("imageLink"));
+            }
+
+            MySQL.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return document;
+    }
+
 
 }
