@@ -46,6 +46,7 @@ public class AddDocument implements IOOperation {
             System.out.println("Enter Borrowing copies: ");
             document.setBrwcopiers(s.nextInt());
 
+            document.setImageLink("https://i.imgur.com/LprwO0E.png");
             DocumentDatabase.getInstance().insert(document);
             System.out.println("Document added successfully\n");
             user.menu(user);
