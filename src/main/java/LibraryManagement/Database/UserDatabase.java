@@ -22,7 +22,7 @@ public class UserDatabase {
 
             String sql = "INSERT INTO user(name, phoneNumber, password, accessLevel) "
                     + " VALUE('" + user.getName() + "', '"
-                    + user.getPhonenumber() + "', '"
+                    + user.getPhoneNumber() + "', '"
                     + user.getPassword() + "', '"
                     + user.getAccessLevel() + "')";
 

@@ -68,7 +68,7 @@ public class Start {
                 ArrayList<User> users = UserDatabase.getInstance().selectAll();
 
                 for (User u : users) {
-                    if (u.getPhonenumber().equals(phoneNumber) && u.getPassword().equals(password)) {
+                    if (u.getPhoneNumber().equals(phoneNumber) && u.getPassword().equals(password)) {
                         return u;
                     }
                 }

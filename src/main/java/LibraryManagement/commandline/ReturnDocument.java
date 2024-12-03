@@ -35,7 +35,7 @@ public class ReturnDocument implements IOOperation {
             Document document = documents.get(i);
             if (borrowing.getDaysLeft() < 0) {
                 System.out.println("You are late!\n"
-                        + "You have to pay " + Math.abs(borrowing.getDaysLeft() * 50) + "VND as fine\n");
+                        + "You have to pay " + Math.abs(borrowing.getDaysLeft() * 10000) + "VND as fine\n");
             }
             document.setBrwcopiers(document.getBrwcopiers() + 1);
             DocumentDatabase.getInstance().update(document);

@@ -25,7 +25,7 @@ public class Account {
 
     public void mainDashboard() {
         userName.setText(user.getName());
-        phoneNumber.setText(user.getPhonenumber());
+        phoneNumber.setText(user.getPhoneNumber());
         accessLevel.setText(user.getAccessLevel());
     }
 }
