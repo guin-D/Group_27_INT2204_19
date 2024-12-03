@@ -17,10 +17,10 @@ public class CalculateFine implements IOOperation {
         boolean g = true;
 
         for (Borrowing b : borrowings) {
-            if (b.getDocument().getTitle().matches(documentName) && b.getUser().getName().matches(user.getName())) {
-                if (b.getDaysLeft() > 0) {
+            if (b.getDocumentTitle().matches(documentName) && b.getUserName().matches(user.getName())) {
+                if (b.getDaysLeft() < 0) {
                     System.out.println("You are late!\n"
-                            + " You have to pay " + b.getDaysLeft() * 50 + " as fine");
+                            + "You have to pay " + Math.abs(b.getDaysLeft() * 10000) + "VND as fine\n");
                 } else {
                     System.out.println("You don't have to pay fine\n");
                 }

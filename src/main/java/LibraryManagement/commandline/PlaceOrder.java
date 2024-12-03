@@ -41,6 +41,8 @@ public class PlaceOrder implements IOOperation {
             } else {
                 System.out.println("This document isn't available for order!");
             }
+        } else {
+            System.out.println("We don't have this document\n");
         }
 
         user.menu(user);
