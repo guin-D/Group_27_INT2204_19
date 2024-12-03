@@ -37,7 +37,7 @@ public class QRCodeGenerator {
         }
       }
 
-      ImageIO.write(image, "PNG", new File("D:\\QRCODE.png"));
+      ImageIO.write(image, "PNG", new File("src/main/resources/LibraryManagement/QRImage/" + document.getTitle() + ".png"));
       System.out.println("QR Code has been generated successfully and saved as " + document.getTitle() + ".png");
     } catch (Exception e) {
       e.printStackTrace();
