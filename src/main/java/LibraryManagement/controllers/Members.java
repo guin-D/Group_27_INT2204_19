@@ -124,7 +124,7 @@ public class Members {
         for (User user : users) {
             ArrayList<Object> row = new ArrayList<>();
             row.add(user.getName());
-            row.add(user.getPhonenumber());
+            row.add(user.getPhoneNumber());
             row.add(user.getAccessLevel());
 
             int borrow = 0;

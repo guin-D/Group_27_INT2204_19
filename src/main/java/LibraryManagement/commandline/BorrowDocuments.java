@@ -43,41 +43,14 @@ public class BorrowDocuments implements IOOperation {
                     documents.set(i, document);
                     BorrowingDatabase.getInstance().insert(borrowing);
                     System.out.println("You must return the document before 14 days from now\n"
-                            + "Expiry date: " + borrowing.getFinish() + "\nEnjoy!");
+                            + "Expiry date: " + borrowing.getFinish() + "\nEnjoy!\n");
                 } else {
-                    System.out.println("This document isn't available for borrowing!");
+                    System.out.println("This document isn't available for borrowing!\n");
                 }
             }
         } else {
-            System.out.println("We don't have this document");
+            System.out.println("We don't have this document\n");
         }
-
-//        int i = database.getDocument(documentName);
-//        if (i > -1) {
-//            Document document = database.getDocument(i);
-//
-//            boolean n = true;
-//            for (Borrowing b : database.getBrws()) {
-//                if (b.getDocument().getTitle().matches(documentName) && b.getUser().getName().matches(user.getName())) {
-//                    n = false;
-//                    System.out.println("You have borrowed this document before!");
-//                }
-//            }
-//
-//            if (n) {
-//                if (document.getBrwcopiers() > 1) {
-//                    Borrowing borrowing = new Borrowing(document, user);
-//                    document.setBrwcopiers(document.getBrwcopiers() - 1);
-//                    database.borrowDocument(borrowing, document, i);
-//                    System.out.println("You must return the document before 14 days from now\n"
-//                            + "Expiry date: " + borrowing.getFinish() + "\nEnjoy!");
-//                } else {
-//                    System.out.println("This document isn't available for borrowing!");
-//                }
-//            }
-//        } else {
-//            System.out.println("Document doesn't exist!\n");
-//        }
         user.menu(user);
     }
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public abstract class User {
     protected String name;
-    protected String phonenumber;
+    protected String phoneNumber;
     protected String password;
     protected String accessLevel;
     protected IOOperation[] operations;
@@ -21,9 +21,9 @@ public abstract class User {
         this.name = name;
     }
 
-    public User(String name, String phonenumber, String password, String accessLevel) {
+    public User(String name, String phoneNumber, String password, String accessLevel) {
         this.name = name;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.password = password;
         this.accessLevel = accessLevel;
     }
@@ -32,8 +32,8 @@ public abstract class User {
         return name;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getPassword() {
@@ -44,13 +44,9 @@ public abstract class User {
         return accessLevel;
     }
 
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     abstract public void menu(User user);
-
-    abstract public String toString();
-
 }

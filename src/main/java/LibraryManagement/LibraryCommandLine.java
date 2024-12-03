@@ -25,7 +25,6 @@ public class LibraryCommandLine {
             case 2:
                 newUser();
                 break;
-
         }
     }
 
@@ -39,7 +38,7 @@ public class LibraryCommandLine {
         ArrayList<User> users = UserDatabase.getInstance().selectAll();
         int i = -1;
         for (User u : users) {
-            if (u.getPhonenumber().matches(phoneNumber) && u.getPassword().matches(password)) {
+            if (u.getPhoneNumber().matches(phoneNumber) && u.getPassword().matches(password)) {
                 i = users.indexOf(u);
                 break;
             }
@@ -50,16 +49,6 @@ public class LibraryCommandLine {
         } else {
             System.out.println("User doesn't exist!");
         }
-
-
-//        int n = database.login(phoneNumber, password);
-//        System.out.println(n);
-//        if (n != -1) {
-//            User user = database.getUser(n);
-//            user.menu(database, user);
-//        } else {
-//            System.out.println("User doesn't exist!");
-//        }
     }
 
     public static void newUser() {

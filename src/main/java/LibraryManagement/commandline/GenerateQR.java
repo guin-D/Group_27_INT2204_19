@@ -10,16 +10,15 @@ public class GenerateQR {
       Scanner scanner = new Scanner(System.in);
 
       System.out.println("Enter the ISBN of the book: ");
-      String isbn = scanner.nextLine(); // Đọc ISBN từ bàn phím
+      String isbn = scanner.nextLine();
 
-      // Lấy thông tin sách từ database
       DocumentDatabase documentDatabase = DocumentDatabase.getInstance();
       Document document = documentDatabase.getDocumentByISBN(isbn);
 
       if (document != null) {
         System.out.println("Book found: " + document.getTitle());
         System.out.println("Generating QR Code...");
-        // Gọi hàm tạo mã QR
+
         QRCodeGenerator.generateQRCode(document);
       } else {
         System.out.println("No book found with ISBN: " + isbn);

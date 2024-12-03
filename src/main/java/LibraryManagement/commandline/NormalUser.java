@@ -17,8 +17,8 @@ public class NormalUser extends User {
         };
     }
 
-    public NormalUser(String name, String phonenumber, String password, String accessLevel) {
-        super(name, phonenumber, password, accessLevel);
+    public NormalUser(String name, String phoneNumber, String password, String accessLevel) {
+        super(name, phoneNumber, password, accessLevel);
         this.operations = new IOOperation[]{
                 new displayDocument(),
                 new Search(),
@@ -42,15 +42,15 @@ public class NormalUser extends User {
         System.out.println("7. Display User Info");
         System.out.println("8. Exit");
 
-        Scanner s = new Scanner(System.in);
-        int n = s.nextInt();
+        try {
+            Scanner s = new Scanner(System.in);
+            int n = s.nextInt();
 
-        this.operations[n - 1].oper(user);
-        s.close();
-    }
-
-
-    public String toString() {
-        return name + "<N/>" + phonenumber + "<N/>" + password + "<N/>" + "Normal";
+            this.operations[n - 1].oper(user);
+            s.close();
+        } catch (Exception e) {
+            System.out.println("Action is not supported\n");
+            menu(user);
+        }
     }
 }
