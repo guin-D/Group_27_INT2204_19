@@ -134,7 +134,7 @@ public class BorrowHistoryMore {
                 if (borrowingUser != null) {
                     ArrayList<Object> row = new ArrayList<>();
                     row.add(borrowing.getUserName() != null ? borrowing.getUserName() : "N/A");
-                    row.add(borrowingUser.getPhonenumber() != null ? borrowingUser.getPhonenumber() : "N/A");
+                    row.add(borrowingUser.getPhoneNumber() != null ? borrowingUser.getPhoneNumber() : "N/A");
                     row.add(borrowing.getStart() != null ? borrowing.getStart() : "N/A");
                     row.add(borrowing.getFinish() != null ? borrowing.getFinish() : "N/A");
                     row.add(borrowing.getDaysLeft() > 0 ? borrowing.getDaysLeft() + " days left" : "Overdue");

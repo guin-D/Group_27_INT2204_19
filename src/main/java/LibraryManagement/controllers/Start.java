@@ -87,23 +87,20 @@ public class Start {
      */
     @FXML
     public void handleSignIn(ActionEvent event, String phoneNumber, String password) {
-        // Create a task to authenticate the user asynchronously.
         Task<User> signInTask = new Task<>() {
             @Override
             protected User call() throws Exception {
-                // Retrieve all users from the database and check credentials.
                 ArrayList<User> users = UserDatabase.getInstance().selectAll();
                 for (User u : users) {
-                    if (u.getPhonenumber().equals(phoneNumber) && u.getPassword().equals(password)) {
-                        return u; // Return the user object if credentials match.
+                    if (u.getPhoneNumber().equals(phoneNumber) && u.getPassword().equals(password)) {
+                        return u;
                     }
                 }
-                return null; // Return null if no matching user is found.
+                return null;
             }
         };
 
         signInTask.setOnSucceeded(e -> {
-            // If sign-in is successful, navigate to the appropriate dashboard based on user type.
             User user = signInTask.getValue();
             if (user != null) {
                 navigateToDashboard(event, user);

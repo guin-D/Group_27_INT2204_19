@@ -1,15 +1,20 @@
 package LibraryManagement.controllers;
 
 import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.QR.QRCodeGenerator;
 import LibraryManagement.commandline.Document;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class UpdateDocument {
 
@@ -43,6 +48,12 @@ public class UpdateDocument {
     @FXML
     private Button cancel;
 
+    @FXML
+    private Button delete;
+
+    @FXML
+    private Button createQr;
+
     private Document currentDocument;
 
     /**
@@ -75,6 +86,8 @@ public class UpdateDocument {
         save.setOnAction(event -> handleSave());
 
         cancel.setOnAction(event -> handleCancel());
+
+
     }
 
     /**
@@ -124,5 +137,47 @@ public class UpdateDocument {
     private void closeWindow() {
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();
+    }
+
+    /**
+     * Delete the current document.
+     */
+    private void handleDelete() {
+        try {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Delete document successfully");
+            alert.showAndWait();
+            DocumentDatabase.getInstance().remove(currentDocument);
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Document doesn't exist!");
+            alert.showAndWait();
+        }
+    }
+
+    /**
+     * Create QR code for document.
+     */
+    private void handleQR() {
+        String qrCodeImagePath = "src/main/resources/LibraryManagement/QRImage/" + currentDocument.getTitle() + ".png";
+        File qrCodeImageFile = new File(qrCodeImagePath);
+
+        if (!qrCodeImageFile.exists()) {
+            currentDocument.setTitle(title.getText());
+            currentDocument.setIsbn(isbn.getText());
+            currentDocument.setAuthor(author.getText());
+            currentDocument.setPublisher(publisher.getText());
+            currentDocument.setQty(Integer.parseInt(totalOrder.getText()));
+            currentDocument.setPrice(Double.parseDouble(price.getText()));
+            currentDocument.setBrwcopiers(Integer.parseInt(totalQuantity.getText()));
+
+            QRCodeGenerator.generateQRCode(currentDocument);
+        }
+
+        ImageView imageView = new ImageView(qrCodeImagePath);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(imageView.getParent()));
+        stage.show();
     }
 }

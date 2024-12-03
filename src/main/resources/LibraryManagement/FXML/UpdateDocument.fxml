@@ -11,39 +11,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="720.0" spacing="10.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.UpdateDocument">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="650.0" prefWidth="720.0" spacing="10.0" style="-fx-background-color: #F6F8FE;"
+      xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="LibraryManagement.controllers.UpdateDocument">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1970.0" spacing="20.0">
             <children>
-                <Label style="-fx-text-fill: #203169;" text="Update document">
+                <Label style="-fx-text-fill: #203169;" text="Document">
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="16.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
                 <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>
-                                <Image url="@../Image/pen_2.png" />
+                                <Image url="@../Image/pen_2.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
+                <Button fx:id="delete" mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>
-                                <Image url="@../Image/trash.png" />
+                                <Image url="@../Image/trash.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
+                <Button fx:id="createQr" mnemonicParsing="false" style="-fx-background-color: #F6F8FE;">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20">
                             <image>
-                                <Image url="@../Image/more.png" />
+                                <Image url="@../Image/qr.png"/>
                             </image>
                         </ImageView>
                     </graphic>
@@ -52,110 +55,112 @@
         </HBox>
         <ImageView fx:id="documentImg" fitHeight="175.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
             <VBox.margin>
-                <Insets top="20.0" />
+                <Insets top="20.0"/>
             </VBox.margin>
         </ImageView>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Title">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="title" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="title" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="ISBN">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="isbn" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="isbn" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Author">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="author" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="author" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Publisher name">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="publisher" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="publisher" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Total quantity">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="totalQuantity" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="totalQuantity" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Total orders">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="totalOrder" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="totalOrder" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
             <children>
                 <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia;" text="Price">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                <TextField fx:id="price" prefWidth="500.0" />
+                <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="price" prefWidth="500.0"/>
             </children>
         </HBox>
         <HBox prefHeight="30.0" prefWidth="200.0" spacing="20.0">
             <children>
                 <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                 </Region>
-                <Button fx:id="save" mnemonicParsing="false" style="-fx-background-color: #203169;" text="Save" textFill="WHITE">
+                <Button fx:id="save" mnemonicParsing="false" style="-fx-background-color: #203169;" text="Save"
+                        textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                 </Button>
-                <Button fx:id="cancel" mnemonicParsing="false" style="-fx-background-color: #203169;" text="Cancel" textFill="WHITE">
+                <Button fx:id="cancel" mnemonicParsing="false" style="-fx-background-color: #203169;" text="Cancel"
+                        textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                 </Button>
             </children>
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
         </HBox>
     </children>
     <padding>
-        <Insets left="30.0" right="35.0" top="20.0" />
+        <Insets left="30.0" right="35.0" top="20.0"/>
     </padding>
 </VBox>
