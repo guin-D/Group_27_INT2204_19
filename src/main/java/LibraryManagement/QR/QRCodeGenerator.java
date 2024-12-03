@@ -15,22 +15,21 @@ import java.util.Hashtable;
 public class QRCodeGenerator {
   public static void generateQRCode(Document document) {
     try {
-      // Tạo nội dung mã QR từ thông tin sách
       String content = "Title: " + document.getTitle() + "\n" +
           "ISBN: " + document.getIsbn() + "\n" +
           "Author: " + document.getAuthor() + "\n" +
           "Publisher: " + document.getPublisher() + "\n" +
-          "Price: " + document.getPrice();
+          "Qty available for purchase: " + document.getQty() + " with price: " +document.getPrice() + "\n" +
+          "Qty available for borrow: " + document.getBrwcopiers() ;
 
-      // Thiết lập cấu hình mã QR
       Hashtable<EncodeHintType, Object> hintMap = new Hashtable<>();
-      hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L); // Mức sửa lỗi
-      hintMap.put(EncodeHintType.MARGIN, 2); // Kích thước lề
+      hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+      hintMap.put(EncodeHintType.MARGIN, 2);
 
-      // Tạo mã QR
+
       BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 300, 300, hintMap);
 
-      // Tạo hình ảnh từ BitMatrix
+
       BufferedImage image = new BufferedImage(300, 300, BufferedImage.TYPE_INT_RGB);
       for (int x = 0; x < 300; x++) {
         for (int y = 0; y < 300; y++) {
@@ -38,9 +37,8 @@ public class QRCodeGenerator {
         }
       }
 
-      // Lưu hình ảnh thành file
       ImageIO.write(image, "PNG", new File("D:\\QRCODE.png"));
-      System.out.println("QR Code has been generated successfully and saved as 'document_qr.png'.");
+      System.out.println("QR Code has been generated successfully and saved as " + document.getTitle() + ".png");
     } catch (Exception e) {
       e.printStackTrace();
     }
