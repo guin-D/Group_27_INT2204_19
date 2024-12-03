@@ -7,9 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class UpdateDocument {
+
     @FXML
     private ImageView documentImg;
 
@@ -42,6 +45,11 @@ public class UpdateDocument {
 
     private Document currentDocument;
 
+    /**
+     * Set the data to the fields for the document being updated.
+     *
+     * @param document The document object containing the data to be displayed.
+     */
     public void setData(Document document) {
         this.currentDocument = document;
         if (this.currentDocument != null) {
@@ -59,6 +67,9 @@ public class UpdateDocument {
         }
     }
 
+    /**
+     * Initialize the controller and set up event handlers for buttons.
+     */
     @FXML
     private void initialize() {
         save.setOnAction(event -> handleSave());
@@ -66,17 +77,50 @@ public class UpdateDocument {
         cancel.setOnAction(event -> handleCancel());
     }
 
+    /**
+     * Handle the save button click event. Update the document data and close the window.
+     */
     private void handleSave() {
+        // Update the current document with values from the input fields
+        currentDocument.setTitle(title.getText());
+        currentDocument.setIsbn(isbn.getText());
+        currentDocument.setAuthor(author.getText());
+        currentDocument.setPublisher(publisher.getText());
+        currentDocument.setBrwcopiers(Integer.parseInt(totalQuantity.getText()));
+        currentDocument.setQty(Integer.parseInt(totalOrder.getText()));
+        currentDocument.setPrice(Double.parseDouble(price.getText()));
+
+        // Update the document in the database
         DocumentDatabase.getInstance().update(currentDocument);
 
+        // Show success message
+        showSuccessAlert();
+
+        // Close the window
         closeWindow();
     }
 
+    /**
+     * Handle the cancel button click event. Close the window without saving.
+     */
     private void handleCancel() {
         closeWindow();
     }
 
+    /**
+     * Show a success alert indicating the document has been successfully updated.
+     */
+    private void showSuccessAlert() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Update Successful");
+        alert.setHeaderText("Document updated successfully!");
+        alert.setContentText("The document information has been updated in the database.");
+        alert.showAndWait();
+    }
 
+    /**
+     * Close the current window.
+     */
     private void closeWindow() {
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();

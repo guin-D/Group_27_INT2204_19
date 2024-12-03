@@ -24,7 +24,7 @@
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1210.0" spacing="30.0">
             <children>
-                <ComboBox fx:id="filterSearch1" prefHeight="28.0" prefWidth="150.0" promptText="Keywords"
+                <ComboBox fx:id="filterSearch" prefHeight="28.0" prefWidth="150.0" promptText="Keywords"
                           style="-fx-background-color: #FFFFFF; -fx-font-size: 14; -fx-text-fill: #203169;"
                           value="Keywords">
                     <items>
@@ -34,12 +34,13 @@
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <TextField prefWidth="250.0">
+                <TextField fx:id="textField" prefWidth="250.0">
                     <font>
                         <Font size="14.0"/>
                     </font>
                 </TextField>
-                <Button mnemonicParsing="false" style="-fx-background-color: #203169;" text="Search" textFill="WHITE">
+                <Button fx:id="searchButton" mnemonicParsing="false" style="-fx-background-color: #203169;"
+                        text="Search" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>
@@ -52,7 +53,7 @@
                     </font>
                 </Button>
                 <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-                <Button mnemonicParsing="false" style="-fx-background-color: #F6F8FE;" onAction="#handleBorrowList">
+                <Button mnemonicParsing="false" onAction="#handleBorrowList" style="-fx-background-color: #F6F8FE;">
                     <font>
                         <Font size="14.0"/>
                     </font>
@@ -124,7 +125,7 @@
         </Label>
         <ScrollPane prefHeight="680.0" prefWidth="1210.0" style="-fx-background-color: #F6F8FE;">
             <content>
-                <GridPane fx:id="main" hgap="20.0" minWidth="100.0" prefHeight="200.0" prefWidth="1170.0"
+                <GridPane fx:id="main" hgap="20.0" minWidth="100.0" prefWidth="1170.0"
                           style="-fx-background-color: #F6F8FE;" vgap="30.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
