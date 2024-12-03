@@ -178,10 +178,14 @@ public class UpdateDocument {
             QRCodeGenerator.generateQRCode(currentDocument);
         }
 
-        ImageView imageView = new ImageView(qrCodeImagePath);
+        String qrCodeUri = qrCodeImageFile.toURI().toString();
+        Image qrCodeImage = new Image(qrCodeUri);
+        ImageView imageView = new ImageView(qrCodeImage);
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(imageView.getParent()));
+        StackPane root = new StackPane(imageView);
+        Scene scene = new Scene(root, 300, 300);
+        stage.setScene(scene);
         stage.show();
     }
 }
