@@ -87,6 +87,10 @@ public class UpdateDocument {
 
         cancel.setOnAction(event -> handleCancel());
 
+        delete.setOnAction(event -> handleDelete());
+
+        createQr.setOnAction(event -> handleQR());
+
 
     }
 
