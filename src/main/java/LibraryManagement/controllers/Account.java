@@ -45,7 +45,7 @@ public class Account {
         // Only update the dashboard if the user object is not null
         if (user != null) {
             userName.setText(user.getName());
-            phoneNumber.setText(user.getPhonenumber());
+            phoneNumber.setText(user.getPhoneNumber());
             accessLevel.setText(user.getAccessLevel());
         }
     }
