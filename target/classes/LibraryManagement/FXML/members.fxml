@@ -13,32 +13,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="1210.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.Members">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1210.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.Members">
     <content>
         <VBox prefWidth="1210.0" spacing="20.0" style="-fx-background-color: #F6F8FE;">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Label text="Member Name" textFill="#203169"/>
-                        <TextField prefHeight="26.0" prefWidth="342.0" style="-fx-background-color: #FFFFFF;"/>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #203169;" text="Search"
-                                textFill="WHITE">
+                        <Label text="Member Name" textFill="#203169">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textField" prefWidth="342.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#handleSearch" style="-fx-background-color: #203169;" text="Search" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0">
                                     <image>
-                                        <Image url="@../Image/search.png"/>
+                                        <Image url="@../Image/search.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                         </Button>
                     </children>
                     <VBox.margin>
-                        <Insets top="20.0"/>
+                        <Insets top="20.0" />
                     </VBox.margin>
                     <padding>
-                        <Insets left="20.0"/>
+                        <Insets left="20.0" />
                     </padding>
                 </HBox>
                 <TableView fx:id="contentTable" prefHeight="634.0" prefWidth="1210.0">
@@ -47,7 +54,7 @@
                             <graphic>
                                 <Label style="-fx-text-fill: #203169;" text="Name">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
@@ -56,7 +63,7 @@
                             <graphic>
                                 <Label style="-fx-text-fill: #203169;" text="Phone number">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
@@ -65,7 +72,7 @@
                             <graphic>
                                 <Label style="-fx-text-fill: #203169;" text="Access level">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
@@ -74,7 +81,7 @@
                             <graphic>
                                 <Label style="-fx-text-fill: #203169;" text="Borrowed books">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
@@ -83,22 +90,21 @@
                             <graphic>
                                 <Label style="-fx-text-fill: #203169;" text="Overdue">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
                         </TableColumn>
                         <TableColumn fx:id="bookOrders" prefWidth="100.0" style="-fx-alignment: CENTER;">
                             <graphic>
-                                <Label prefHeight="0.0" style="-fx-text-fill: #203169;" text="Books orders"
-                                       textAlignment="JUSTIFY">
+                                <Label prefHeight="0.0" style="-fx-text-fill: #203169;" text="Books orders" textAlignment="JUSTIFY">
                                     <font>
-                                        <Font name="System Bold" size="14.0"/>
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                             </graphic>
                         </TableColumn>
-                        <TableColumn fx:id="options" prefWidth="200.0" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="options" prefWidth="200.0" style="-fx-alignment: CENTER;" />
                     </columns>
                 </TableView>
             </children>

@@ -10,8 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import LibraryManagement.utils.*;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +24,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
+/**
+ * Controller class responsible for handling the Google Books API integration,
+ * allowing the admin to search for books by keyword or ISBN, and display the results.
+ */
 public class GoogleBookAPI {
 
     @FXML
@@ -35,8 +42,12 @@ public class GoogleBookAPI {
     @FXML
     private Button back;
 
-    private Admin admin;
+    private AdminController admin;
 
+    /**
+     * Handles the search button click event. Initiates a background task to fetch book data
+     * from the Google Books API based on the search filter and field input.
+     */
     @FXML
     protected void onSearchButtonClick() {
         main.getChildren().clear();
@@ -44,88 +55,111 @@ public class GoogleBookAPI {
         Task<ArrayList<Book>> task = new Task<>() {
             @Override
             protected ArrayList<Book> call() {
-                String url;
-                if ("Keywords".equals(filterSearch.getValue())) {
-                    String api = "https://www.googleapis.com/books/v1/volumes?q=";
-                    String keyword = field.getText().trim();
-                    url = api + keyword;
-                } else {
-                    String api = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
-                    String isbn = field.getText().trim();
-                    url = api + isbn;
-                }
-
+                String url = buildApiUrl();
                 String jsonResponse = getHttpResponse(url);
                 BooksAPI booksAPI = new BooksAPI();
                 return booksAPI.getBooksFromJson(jsonResponse);
             }
         };
 
-        task.setOnSucceeded(event -> {
-            ArrayList<Book> books = task.getValue();
-            if (books == null || books.isEmpty()) {
-                Label noBookLabel = new Label("No books found for this query.");
-                main.getChildren().add(noBookLabel);
-            } else {
-                for (Book book : books) {
-                    HBox bookBox = createBookBox(book);
-                    main.getChildren().add(bookBox);
-                }
-            }
-        });
-
-        task.setOnFailed(event -> {
-            Label errorLabel = new Label("Error occurred while fetching book info.");
-            main.getChildren().add(errorLabel);
-        });
+        task.setOnSucceeded(event -> handleSearchSuccess(task));
+        task.setOnFailed(event -> handleSearchFailure());
 
         new Thread(task).start();
     }
 
+    /**
+     * Builds the appropriate Google Books API URL based on the selected search filter.
+     *
+     * @return the constructed URL for the API request
+     */
+    private String buildApiUrl() {
+        String baseApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
+        String query = field.getText().trim();
+
+        if ("Keywords".equals(filterSearch.getValue())) {
+            return baseApiUrl + query;
+        } else {
+            return baseApiUrl + "isbn:" + query;
+        }
+    }
+
+    /**
+     * Handles the successful completion of the book search task, updating the UI with
+     * the retrieved book data.
+     *
+     * @param task the background task that completed successfully
+     */
+    private void handleSearchSuccess(Task<ArrayList<Book>> task) {
+        ArrayList<Book> books = task.getValue();
+        if (books == null || books.isEmpty()) {
+            main.getChildren().add(new Label("No books found for this query."));
+        } else {
+            books.forEach(book -> main.getChildren().add(createBookBox(book)));
+        }
+    }
+
+    /**
+     * Handles the failure of the book search task, displaying an error message.
+     */
+    private void handleSearchFailure() {
+        main.getChildren().add(new Label("Error occurred while fetching book info."));
+    }
+
+    /**
+     * Creates a VBox containing detailed information and actions for a single book.
+     *
+     * @param book the book to display information for
+     * @return an HBox containing the book details and an add button
+     */
     private HBox createBookBox(Book book) {
-        HBox bookBox = new HBox();
-        bookBox.setSpacing(20);
+        HBox bookBox = new HBox(20);
         bookBox.setPadding(new Insets(10, 30, 0, 0));
-        bookBox.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 10;");
+        bookBox.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5;");
         bookBox.setPrefWidth(1000);
 
-        // Book thumbnail
+        // Set up book image
         ImageView bookImage = new ImageView();
         bookImage.setFitWidth(128);
         bookImage.setFitHeight(175);
         if (book.getImageLinks() != null && !book.getImageLinks().isEmpty()) {
-            Image image = new Image(book.getImageLinks(), true);
-            bookImage.setImage(image);
+            bookImage.setImage(new Image(book.getImageLinks(), true));
         }
 
-        VBox bookInfo = new VBox();
-        bookInfo.setSpacing(10);
+        // Set up book details
+        VBox bookInfo = new VBox(10);
         Label titleLabel = new Label("Title: " + book.getTitle());
         titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 16;");
-        Label isbnLabel = new Label("ISBN: " + book.getIsbn());
-        Label authorLabel = new Label("Author: " + book.getAuthor());
-        Label publisherLabel = new Label("Publisher: " + book.getPublisher());
-        Label descriptionLabel = new Label("Description: " + book.getDescription());
-        descriptionLabel.setWrapText(true);
+        bookInfo.getChildren().addAll(
+                titleLabel,
+                new Label("ISBN: " + book.getIsbn()),
+                new Label("Author: " + book.getAuthor()),
+                new Label("Publisher: " + book.getPublisher()),
+                new Label("Description: " + book.getDescription())
+        );
 
-        bookInfo.getChildren().addAll(titleLabel, isbnLabel, authorLabel, publisherLabel, descriptionLabel);
-
+        // Add book button
         Button addBookBtn = new Button();
         ImageView addImage = new ImageView(getClass().getResource("/LibraryManagement/Image/add.png").toExternalForm());
         addImage.setFitHeight(20);
         addImage.setFitWidth(20);
         addBookBtn.setGraphic(addImage);
         addBookBtn.setStyle("-fx-background-color: #FFFFFF");
-        addBookBtn.setText("");
-        addBookBtn.setOnAction(event -> {
-            handleAddBook(book);
-        });
+        addBookBtn.setOnAction(event -> handleAddBook(book));
 
+        Region region = new Region();
+        HBox.setHgrow(region, Priority.ALWAYS);
 
-        bookBox.getChildren().addAll(bookImage, bookInfo, addBookBtn);
+        bookBox.getChildren().addAll(bookImage, bookInfo, region, addBookBtn);
         return bookBox;
     }
 
+    /**
+     * Makes an HTTP GET request to the given URL and returns the response body as a string.
+     *
+     * @param url the URL to send the request to
+     * @return the response body as a string, or null if the request fails
+     */
     private String getHttpResponse(String url) {
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -144,6 +178,11 @@ public class GoogleBookAPI {
         }
     }
 
+    /**
+     * Handles the process of adding a book to the library.
+     *
+     * @param book the book to add
+     */
     private void handleAddBook(Book book) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Book.fxml"));
@@ -159,13 +198,20 @@ public class GoogleBookAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void setAdmin(Admin admin) {
+    /**
+     * Sets the admin instance for the controller.
+     *
+     * @param admin the admin instance to set
+     */
+    public void setAdmin(AdminController admin) {
         this.admin = admin;
     }
 
+    /**
+     * Handles the back button click, returning to the previous screen.
+     */
     @FXML
     public void handleBackClick() {
         if (admin != null) {

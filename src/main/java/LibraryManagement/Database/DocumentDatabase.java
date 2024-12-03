@@ -3,10 +3,7 @@ package LibraryManagement.Database;
 import LibraryManagement.commandline.Document;
 import LibraryManagement.commandline.MySQL;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DocumentDatabase {
@@ -179,6 +176,41 @@ public class DocumentDatabase {
             e.printStackTrace();
         }
         return document;
+    }
+
+    public ArrayList<Document> searchByKeyword(String title) {
+        String query = "SELECT * FROM document WHERE title LIKE ?";
+        return executeSearchQuery(query, "%" + title + "%");
+    }
+
+    public ArrayList<Document> searchByIsbn(String isbn) {
+        String query = "SELECT * FROM document WHERE isbn LIKE ?";
+        return executeSearchQuery(query, "%" + isbn + "%");
+    }
+
+    private ArrayList<Document> executeSearchQuery(String query, String parameter) {
+        ArrayList<Document> documents = new ArrayList<>();
+        try (Connection connection = MySQL.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, parameter);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                documents.add(new Document(
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("publisher"),
+                        rs.getString("ISBN"),
+                        rs.getInt("qty"),
+                        rs.getDouble("price"),
+                        rs.getInt("brwcopiers"),
+                        rs.getString("imageLink")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return documents;
     }
 
 

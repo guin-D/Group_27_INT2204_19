@@ -14,7 +14,6 @@ module LibraryManagementSystem {
     requires java.desktop;
     requires jcommander;
     requires com.google.zxing;
-    requires com.google.zxing.javase;
 
     opens LibraryManagement.FXML to javafx.fxml;
     opens LibraryManagement to javafx.graphics;
