@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1210.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.Members">
+    <content>
+        <VBox prefWidth="1210.0" spacing="20.0" style="-fx-background-color: #F6F8FE;">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Label text="Member Name" textFill="#203169"/>
+                        <TextField prefHeight="26.0" prefWidth="342.0" style="-fx-background-color: #FFFFFF;"/>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #203169;" text="Search"
+                                textFill="WHITE">
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0">
+                                    <image>
+                                        <Image url="@../Image/search.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                </HBox>
+                <TableView fx:id="contentTable" prefHeight="634.0" prefWidth="1210.0">
+                    <columns>
+                        <TableColumn fx:id="name" prefWidth="150.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Name">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="phoneNumber" prefWidth="180.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Phone number">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="accessLevel" prefWidth="100.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Access level">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="borrowedBook" prefWidth="150.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Borrowed books">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="overdue" prefWidth="100.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Overdue">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="bookOrders" prefWidth="100.0" style="-fx-alignment: CENTER;">
+                            <graphic>
+                                <Label prefHeight="0.0" style="-fx-text-fill: #203169;" text="Books orders"
+                                       textAlignment="JUSTIFY">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="options" prefWidth="200.0" style="-fx-alignment: CENTER;"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

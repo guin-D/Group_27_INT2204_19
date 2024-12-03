@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1210.0" style="-fx-background-color: #F6F8FE;" xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.BorrowHistoryMore">
+    <content>
+        <VBox prefWidth="1210.0" spacing="20.0" style="-fx-background-color: #F6F8FE;">
+            <children>
+                <Label text="Borrowed history" textFill="#203169">
+                    <font>
+                        <Font name="Georgia Bold" size="24.0"/>
+                    </font>
+                </Label>
+                <HBox prefHeight="300.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <ImageView fx:id="bookImg" fitHeight="300.0" fitWidth="200.0" pickOnBounds="true"
+                                   preserveRatio="true"/>
+                        <VBox prefHeight="300.0" prefWidth="674.0" spacing="20.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Title" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField fx:id="title" editable="false" focusTraversable="false"
+                                                   prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Author" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField fx:id="author" editable="false" focusTraversable="false"
+                                                   prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Total quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField fx:id="totalQuantity" editable="false" focusTraversable="false"
+                                                   prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Borrowed quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField fx:id="borrowQuantity" editable="false" focusTraversable="false"
+                                                   prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Available quantity" textFill="#203169">
+                                            <font>
+                                                <Font name="Georgia Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                        <TextField fx:id="avaiQuantity" editable="false" focusTraversable="false"
+                                                   prefWidth="300.0"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <HBox.margin>
+                                <Insets top="30.0"/>
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <TableView fx:id="main" prefHeight="200.0" style="-fx-background-color: #FFFFFF;">
+                    <columns>
+                        <TableColumn fx:id="user" prefWidth="120.0"
+                                     style="-fx-text-fill: #203169; -fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Borrowed by"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="phoneNumber" prefWidth="170.0"
+                                     style="-fx-text-fill: #203169; -fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Phone number"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="borrowedDate" prefWidth="120.0"
+                                     style="-fx-text-fill: #203169; -fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Borrowed date"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="returnedDate" prefWidth="170.0"
+                                     style="-fx-text-fill: #203169; -fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Returned date"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn fx:id="status" prefWidth="120.0"
+                                     style="-fx-text-fill: #203169; -fx-alignment: CENTER;">
+                            <graphic>
+                                <Label style="-fx-text-fill: #203169;" text="Status"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="470.0" style="-fx-textf-fill: #203169;"/>
+                    </columns>
+                </TableView>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>

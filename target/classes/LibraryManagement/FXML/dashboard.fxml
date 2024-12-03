@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="720.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/23"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibraryManagement.controllers.Dashboard">
+    <content>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1210.0"
+              spacing="10.0" style="-fx-background-color: #F6F8FE;">
+            <children>
+                <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia; -fx-font-weight: Bold;"
+                       text="My dashboard">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <HBox prefHeight="90.0" prefWidth="1210.0" spacing="20.0">
+                    <children>
+                        <HBox prefHeight="70.0" prefWidth="290.0"
+                              style="-fx-background-color: #FFFFFF; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Image/img_dashboard1.png"/>
+                                    </image>
+                                </ImageView>
+                                <VBox prefHeight="70.0" prefWidth="140.0" style="-fx-alignment: CENTER;">
+                                    <children>
+                                        <Label style="-fx-text-fill: #D6DDF7;" text="Total book">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label style="-fx-text-fill: #203169;">
+                                            <font>
+                                                <Font name="System Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="290.0"
+                              style="-fx-background-color: #FFFFFF; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Image/img_dashboard2.png"/>
+                                    </image>
+                                </ImageView>
+                                <VBox prefHeight="70.0" prefWidth="140.0" style="-fx-alignment: CENTER;">
+                                    <children>
+                                        <Label style="-fx-text-fill: #ECC3A8;" text="Borrowed book">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label style="-fx-text-fill: #D87035;">
+                                            <font>
+                                                <Font name="System Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="290.0"
+                              style="-fx-background-color: #FFFFFF; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Image/img_dashboard3.png"/>
+                                    </image>
+                                </ImageView>
+                                <VBox prefHeight="70.0" prefWidth="140.0" style="-fx-alignment: CENTER;">
+                                    <children>
+                                        <Label style="-fx-text-fill: #D6DDF7;" text="Overdue">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label style="-fx-text-fill: #203169;">
+                                            <font>
+                                                <Font name="System Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="290.0"
+                              style="-fx-background-color: #FFFFFF; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Image/img_dashboard2.png"/>
+                                    </image>
+                                </ImageView>
+                                <VBox prefHeight="70.0" prefWidth="140.0" style="-fx-alignment: CENTER;">
+                                    <children>
+                                        <Label style="-fx-text-fill: #ECC3A8;" text="Members">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label style="-fx-text-fill: #D87035;">
+                                            <font>
+                                                <Font name="System Bold" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+                <VBox prefWidth="1190.0">
+                    <children>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                            <children>
+                                <Label style="-fx-text-fill: #203169; -fx-font-family: Georgia; -fx-font-weight: BOLD;"
+                                       text="Recent borrowed history">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="sortComboBox" prefWidth="120.0" promptText="Latest"
+                                          style="-fx-background-color: #FFFFFF; -fx-text-fill: #203169;">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Latest"/>
+                                            <String fx:value="Oldest"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+
+                            </children>
+                        </HBox>
+                        <TableView fx:id="tableView" minHeight="50.0" prefHeight="50.0" prefWidth="1190.0"
+                                   style="-fx-background-color: #FFFFFF;" stylesheets="@../CSS/tableView.css">
+                            <columns>
+                                <TableColumn fx:id="bookIdColumn" prefWidth="120.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Book ID" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="titleColumn" prefWidth="170.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Title" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="isbnColumn" prefWidth="120.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="ISBN" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="nameColumn" prefWidth="170.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Name" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="authorColumn" prefWidth="120.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Author" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="daysLeftColumn" prefWidth="120.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Dayl lefts" textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="borrowedColumn" prefWidth="120.0" style="-fx-alignment: CENTER;">
+                                    <graphic>
+                                        <Label style="-fx-text-fill: #203169;" text="Borrowing date"
+                                               textFill="#203169"/>
+                                    </graphic>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="10.0" right="10.0" top="30.0"/>
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>
