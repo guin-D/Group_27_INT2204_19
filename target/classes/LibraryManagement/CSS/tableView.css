@@ -1,8 +1,0 @@
-.table-view .column-header-background {
-    -fx-background-color: #203169; /* Màu nền của tiêu đề */
-}
-
-/* Đảm bảo rằng màu văn bản của tiêu đề không bị thay đổi */
-.table-view .column-header .label {
-    -fx-text-fill: #FFFFFF; /* Màu văn bản của tiêu đề */
-}
