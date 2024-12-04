@@ -165,19 +165,22 @@ public class UpdateDocument {
      */
     private void handleQR() {
         String qrCodeImagePath = "src/main/resources/LibraryManagement/QRImage/" + currentDocument.getTitle() + ".png";
+
         File qrCodeImageFile = new File(qrCodeImagePath);
-
-        if (!qrCodeImageFile.exists()) {
-            currentDocument.setTitle(title.getText());
-            currentDocument.setIsbn(isbn.getText());
-            currentDocument.setAuthor(author.getText());
-            currentDocument.setPublisher(publisher.getText());
-            currentDocument.setQty(Integer.parseInt(totalOrder.getText()));
-            currentDocument.setPrice(Double.parseDouble(price.getText()));
-            currentDocument.setBrwcopiers(Integer.parseInt(totalQuantity.getText()));
-
-            QRCodeGenerator.generateQRCode(currentDocument);
+        if (qrCodeImageFile.exists()) {
+            qrCodeImageFile.delete();
+            qrCodeImageFile = new File(qrCodeImagePath);
         }
+
+        currentDocument.setTitle(title.getText());
+        currentDocument.setIsbn(isbn.getText());
+        currentDocument.setAuthor(author.getText());
+        currentDocument.setPublisher(publisher.getText());
+        currentDocument.setQty(Integer.parseInt(totalOrder.getText()));
+        currentDocument.setPrice(Double.parseDouble(price.getText()));
+        currentDocument.setBrwcopiers(Integer.parseInt(totalQuantity.getText()));
+
+        QRCodeGenerator.generateQRCode(currentDocument);
 
         String qrCodeUri = qrCodeImageFile.toURI().toString();
         Image qrCodeImage = new Image(qrCodeUri);
