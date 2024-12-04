@@ -2,6 +2,7 @@ package LibraryManagement.controllers;
 
 import LibraryManagement.Database.DocumentDatabase;
 import LibraryManagement.QR.QRCodeGenerator;
+import LibraryManagement.commandline.Admin;
 import LibraryManagement.commandline.Document;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

@@ -118,12 +118,14 @@ public class OrderHistoryMore {
         ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
 
         for (Order order : orders) {
-            ArrayList<Object> row = new ArrayList<>();
-            row.add(order.getUserName() != null ? order.getUserName() : "N/A");
-            row.add(order.getPrice());
-            row.add(order.getQty());
+            if (order.getDocumentTitle().equals(document.getTitle())) {
+                ArrayList<Object> row = new ArrayList<>();
+                row.add(order.getUserName() != null ? order.getUserName() : "N/A");
+                row.add(order.getPrice());
+                row.add(order.getQty());
 
-            borrowHistoryList.add(row);
+                borrowHistoryList.add(row);
+            }
         }
         main.setItems(borrowHistoryList);
     }
