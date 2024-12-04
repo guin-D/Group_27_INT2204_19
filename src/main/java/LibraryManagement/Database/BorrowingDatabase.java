@@ -2,10 +2,7 @@ package LibraryManagement.Database;
 
 import LibraryManagement.commandline.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -18,22 +15,43 @@ public class BorrowingDatabase {
         try {
             Connection connection = MySQL.getConnection();
 
-            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO borrowing (start_day, finish_day, days_left, document, user) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            String sql = "INSERT INTO borrowing(start_day, finish_day, days_left, document, user) "
-                    + " VALUE('" + borrowing.getStart() + "', '"
-                    + borrowing.getFinish() + "', '"
-                    + borrowing.getDaysLeft() + "', '"
-                    + borrowing.getDocument().getTitle() + "', '"
-                    + borrowing.getUser().getName() + "')";
+            preparedStatement.setDate(1, java.sql.Date.valueOf(borrowing.getStart()));
+            preparedStatement.setDate(2, java.sql.Date.valueOf(borrowing.getFinish()));
+            preparedStatement.setInt(3, borrowing.getDaysLeft());
+            preparedStatement.setString(4, borrowing.getDocument().getTitle());
+            preparedStatement.setString(5, borrowing.getUser().getName());
 
-            int done = statement.executeUpdate(sql);
+            int done = preparedStatement.executeUpdate();
 
             MySQL.closeConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public int update(Borrowing borrowing) {
+        try {
+            Connection connection = MySQL.getConnection();
+
+            String sql = "UPDATE borrowing "
+                    + "SET days_left = ? "
+                    + "WHERE document = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, borrowing.getDaysLeft());
+            preparedStatement.setString(2, borrowing.getDocumentTitle());
+
+            int done = preparedStatement.executeUpdate();
+
+            MySQL.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 1;
     }
 
     public ArrayList<Borrowing> selectAll() {
