@@ -15,20 +15,20 @@ public class DocumentDatabase {
         try {
             Connection connection = MySQL.getConnection();
 
-            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO document(title, author, publisher, ISBN, qty, price, brwcopiers, imageLink) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            String sql = "INSERT INTO document(title, author, publisher, ISBN, "
-                    + "qty, price, brwcopiers, imageLink)"
-                    + " VALUE('" + document.getTitle() + "', '"
-                    + document.getAuthor() + "', '"
-                    + document.getPublisher() + "', '"
-                    + document.getIsbn() + "', '"
-                    + document.getQty() + "', '"
-                    + document.getPrice() + "', '"
-                    + document.getBrwcopiers() + "', '"
-                    + document.getImageLink() + "')";
+            preparedStatement.setString(1, document.getTitle());
+            preparedStatement.setString(2, document.getAuthor());
+            preparedStatement.setString(3, document.getPublisher());
+            preparedStatement.setString(4, document.getIsbn());
+            preparedStatement.setInt(5, document.getQty());
+            preparedStatement.setDouble(6, document.getPrice());
+            preparedStatement.setInt(7, document.getBrwcopiers());
+            preparedStatement.setString(8, document.getImageLink());
 
-            int done = statement.executeUpdate(sql);
+            int done = preparedStatement.executeUpdate();
 
             MySQL.closeConnection(connection);
         } catch (SQLException e) {
