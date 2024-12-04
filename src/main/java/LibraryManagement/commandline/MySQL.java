@@ -12,7 +12,7 @@ public class MySQL {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             String url = "jdbc:MySQL://127.0.0.1:3306/library_management";
             String username = "root";
-            String password = "Nguyen58.";
+            String password = "123456";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
