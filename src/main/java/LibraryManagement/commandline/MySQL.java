@@ -9,14 +9,13 @@ public class MySQL {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             String url = "jdbc:MySQL://127.0.0.1:3306/library_management";
             String username = "root";
-            String password = "123456";
+            String password = "Nguyen58.";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Can't connect to database");
         }
         return connection;
     }
