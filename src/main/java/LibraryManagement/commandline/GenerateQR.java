@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class GenerateQR {
 
-    public static void main(String[] args) {
-      Scanner scanner = new Scanner(System.in);
-
+  public static void main(String[] args) {
+    try (Scanner scanner = new Scanner(System.in)) {
       System.out.println("Enter the title of the book: ");
       String title = scanner.nextLine();
 
@@ -20,11 +19,13 @@ public class GenerateQR {
         System.out.println("Generating QR Code...");
 
         QRCodeGenerator.generateQRCode(document);
+        System.out.println("QR Code generated successfully!");
       } else {
-        System.out.println("No book found with ISBN: " + title);
+        System.out.println("No book found with title: " + title);
       }
-
-      scanner.close(); // Đóng scanner sau khi sử dụng
+    } catch (Exception e) {
+      System.out.println("An error occurred: " + e.getMessage());
+      e.printStackTrace();
     }
   }
-
+}
