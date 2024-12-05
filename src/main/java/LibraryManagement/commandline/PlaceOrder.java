@@ -19,7 +19,6 @@ public class PlaceOrder implements IOOperation {
         ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
 
         int i = -1;
-
         for (Document document : documents) {
             if (document.getTitle().matches(documentName)) {
                 i = documents.indexOf(document);
@@ -28,9 +27,16 @@ public class PlaceOrder implements IOOperation {
 
         if(i > -1) {
             Document document = documents.get(i);
-            if(document.getQty() > 1) {
+            if(document.getQty() > 0) {
                 System.out.println("Enter the quantity of document you want to order:");
-                int qty = s.nextInt();
+                int qty;
+                do {
+                    qty = s.nextInt();
+                    if ((document.getQty() - qty) < 0) {
+                        System.out.println("The remaining quantity of document are not enough to order"
+                        + "\nEnter the quantity of document you want to order:");
+                    }
+                } while ((document.getQty() - qty) < 0);
                 Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), qty);
                 document.setQty(document.getQty() - qty);
                 DocumentDatabase.getInstance().update(document);
