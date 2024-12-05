@@ -1,6 +1,7 @@
 module LibraryManagementSystem {
     exports LibraryManagement.commandline;
     exports LibraryManagement.Database;
+    exports LibraryManagement.QR;
     requires javafx.controls;
     requires javafx.fxml;
 
