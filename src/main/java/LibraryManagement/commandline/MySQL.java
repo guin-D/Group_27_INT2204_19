@@ -11,7 +11,7 @@ public class MySQL {
         try {
             String url = "jdbc:MySQL://127.0.0.1:3306/library_management";
             String username = "root";
-            String password = "123456";
+            String password = "Nguyen58.";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
