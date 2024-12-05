@@ -103,7 +103,7 @@ public class Borrow extends NormalUserController {
         title.setWrapText(true);
         title.setMaxWidth(140);
 
-        Label qty = new Label("Available qty: " + document.getQty());
+        Label qty = new Label("Borrow copies: " + document.getQty());
         qty.setStyle("-fx-text-fill: #203169");
 
         Button borrowBtn = new Button("Borrow");

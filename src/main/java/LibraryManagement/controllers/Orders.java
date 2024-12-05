@@ -151,15 +151,6 @@ public class Orders {
     @FXML
     private void handleOrder(Document document, int qty) {
         ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
-        boolean alreadyOrdered = orders.stream()
-                .anyMatch(o -> o.getDocumentTitle().equals(document.getTitle())
-                        && o.getUserName().equals(this.user.getName()));
-
-        if (alreadyOrdered) {
-            showAlert("Order fail!", "You have already ordered this document.");
-            return;
-        }
-
         if (document.getQty() > 0) {
             Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), qty);
             document.setQty(document.getQty() - qty);
