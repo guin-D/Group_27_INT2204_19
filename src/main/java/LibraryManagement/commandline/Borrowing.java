@@ -82,7 +82,7 @@ public class Borrowing {
     }
 
     public String toString() {
-        return "Borrowing time: " + start + "\nExpiri date: " + finish + "\nDays left: " + daysLeft;
+        return "Borrowing time: " + start + "\nExpire date: " + finish + "\nDays left: " + daysLeft;
     }
 
     public String toString2() {

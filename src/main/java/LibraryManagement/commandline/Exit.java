@@ -28,6 +28,8 @@ public class Exit implements IOOperation {
                     LibraryCommandLine.newUser();
                     break;
 
+                default:
+                    System.out.println("Thank you!");
             }
         } else {
             user.menu(user);

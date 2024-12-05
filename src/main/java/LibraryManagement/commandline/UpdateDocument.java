@@ -10,13 +10,19 @@ public class UpdateDocument implements IOOperation {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the document title: ");
         String documentTitle = s.nextLine();
-//        int i = database.getDocument(documentTitle);
         Document find = new Document();
         find.setTitle(documentTitle);
         Document document = DocumentDatabase.getInstance().selectBy(find);
 
         try {
-            System.out.println("\n" + document.toString() + "\n");
+            System.out.println( "Document found!\n"
+                    + "Title: " + document.getTitle() + "\n"
+                    + "Author: " + document.getAuthor() + "\n"
+                    + "Publisher: " + document.getPublisher() + "\n"
+                    + "ISBN: " + document.getIsbn() + "\n"
+                    + "Quantity: " + document.getQty() + "\n"
+                    + "Price: " + document.getPrice() + "\n"
+                    + "Borrow copies: " + document.getBrwcopiers() + "\n");
             System.out.println("Author after update: ");
             document.setAuthor(s.nextLine());
             System.out.println("Publisher after update: ");
@@ -30,7 +36,7 @@ public class UpdateDocument implements IOOperation {
             System.out.println("Copies for borrowing after update: ");
             document.setBrwcopiers(s.nextInt());
 
-//            database.updateDocument(i, document);
+            System.out.println("Update completed!\n");
             DocumentDatabase.getInstance().update(document);
         } catch (Exception e) {
             System.out.println("Document doesn't exist!\n");

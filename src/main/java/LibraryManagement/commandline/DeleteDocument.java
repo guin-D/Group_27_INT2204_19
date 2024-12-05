@@ -2,6 +2,7 @@ package LibraryManagement.commandline;
 
 import LibraryManagement.Database.DocumentDatabase;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DeleteDocument implements IOOperation {
@@ -12,15 +13,23 @@ public class DeleteDocument implements IOOperation {
         System.out.println("Enter document title: ");
         String documentTitle = s.nextLine();
 
-//        int i = database.getDocument(documentTitle);
+        ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
+
+        int i = -1;
+        for(Document d: documents) {
+            if(d.getTitle().matches(documentTitle)){
+                i = 0;
+                break;
+            }
+        }
+
         Document find = new Document();
         find.setTitle(documentTitle);
 
-        try {
-//            database.deleteDocument(i);
+        if(i == 0) {
             DocumentDatabase.getInstance().remove(find);
             System.out.println("Document deleted successfully!\n");
-        } catch(Exception e) {
+        } else {
             System.out.println("Document doesn't exist!\n");
         }
 

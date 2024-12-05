@@ -151,6 +151,38 @@ public class DocumentDatabase {
         return done;
     }
 
+    public Document getDocumentByTitle(String title) {
+        Document document = null;
+
+        try {
+            Connection connection = MySQL.getConnection();
+            Statement statement = connection.createStatement();
+
+            String sql = "SELECT * FROM document WHERE title = '" + title + "'";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            if (resultSet.next()) {
+                document = new Document(
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getString("publisher"),
+                        resultSet.getString("isbn"),
+                        resultSet.getInt("qty"),
+                        resultSet.getDouble("price"),
+                        resultSet.getInt("brwcopiers"),
+                        resultSet.getString("imageLink")
+                );
+            }
+
+            MySQL.closeConnection(connection);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return document;
+    }
+
     public Document getDocumentByISBN(String isbn) {
         Document document = null;
         try {
@@ -187,6 +219,11 @@ public class DocumentDatabase {
     public ArrayList<Document> searchByIsbn(String isbn) {
         String query = "SELECT * FROM document WHERE isbn LIKE ?";
         return executeSearchQuery(query, "%" + isbn + "%");
+    }
+
+    public ArrayList<Document> searchByAuthor(String author) {
+        String query = "SELECT * FROM document WHERE author LIKE ?";
+        return executeSearchQuery(query, "%" + author + "%");
     }
 
     private ArrayList<Document> executeSearchQuery(String query, String parameter) {
