@@ -3,10 +3,7 @@ package LibraryManagement.Database;
 import LibraryManagement.commandline.MySQL;
 import LibraryManagement.commandline.Order;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderDatabase {
@@ -18,15 +15,15 @@ public class OrderDatabase {
         try {
             Connection connection = MySQL.getConnection();
 
-            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO `order` (document, user, price, qty) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            String sql = "INSERT INTO `order`(document, user, price, qty)"
-                    + " VALUE('" + order.getDocumentTitle() + "' ,'"
-                    + order.getUserName() + "' ,'"
-                    + order.getPrice() + "' ,'"
-                    + order.getQty() + "')";
+            preparedStatement.setString(1, order.getDocumentTitle());
+            preparedStatement.setString(2, order.getUserName());
+            preparedStatement.setDouble(3, order.getPrice());
+            preparedStatement.setInt(4, order.getQty());
 
-            int done = statement.executeUpdate(sql);
+            int done = preparedStatement.executeUpdate();
 
             MySQL.closeConnection(connection);
         } catch (SQLException e) {

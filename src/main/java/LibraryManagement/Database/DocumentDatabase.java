@@ -15,20 +15,20 @@ public class DocumentDatabase {
         try {
             Connection connection = MySQL.getConnection();
 
-            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO document(title, author, publisher, ISBN, qty, price, brwcopiers, imageLink) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            String sql = "INSERT INTO document(title, author, publisher, ISBN, "
-                    + "qty, price, brwcopiers, imageLink)"
-                    + " VALUE('" + document.getTitle() + "', '"
-                    + document.getAuthor() + "', '"
-                    + document.getPublisher() + "', '"
-                    + document.getIsbn() + "', '"
-                    + document.getQty() + "', '"
-                    + document.getPrice() + "', '"
-                    + document.getBrwcopiers() + "', '"
-                    + document.getImageLink() + "')";
+            preparedStatement.setString(1, document.getTitle());
+            preparedStatement.setString(2, document.getAuthor());
+            preparedStatement.setString(3, document.getPublisher());
+            preparedStatement.setString(4, document.getIsbn());
+            preparedStatement.setInt(5, document.getQty());
+            preparedStatement.setDouble(6, document.getPrice());
+            preparedStatement.setInt(7, document.getBrwcopiers());
+            preparedStatement.setString(8, document.getImageLink());
 
-            int done = statement.executeUpdate(sql);
+            int done = preparedStatement.executeUpdate();
 
             MySQL.closeConnection(connection);
         } catch (SQLException e) {
@@ -38,22 +38,23 @@ public class DocumentDatabase {
     }
 
     public int update(Document document) {
-        int done = 0;
         try {
             Connection connection = MySQL.getConnection();
 
-            Statement statement = connection.createStatement();
+            String sql = "UPDATE document "
+                    + "SET author = ?, publisher = ?, ISBN = ?, qty = ?, price = ?, brwcopiers = ? "
+                    + "WHERE title = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            String sql = "UPDATE document"
-                    + " SET" + " author = '" + document.getAuthor() + "',"
-                    + " publisher = '" + document.getPublisher() + "',"
-                    + " ISBN = '" + document.getIsbn() + "',"
-                    + " qty = '" + document.getQty() + "',"
-                    + " price = '" + document.getPrice() + "',"
-                    + " brwcopiers = '" + document.getBrwcopiers() + "'"
-                    + " WHERE title = '" + document.getTitle() + "'";
+            preparedStatement.setString(1, document.getAuthor());
+            preparedStatement.setString(2, document.getPublisher());
+            preparedStatement.setString(3, document.getIsbn());
+            preparedStatement.setInt(4, document.getQty());
+            preparedStatement.setDouble(5, document.getPrice());
+            preparedStatement.setInt(6, document.getBrwcopiers());
+            preparedStatement.setString(7, document.getTitle());
 
-            done = statement.executeUpdate(sql);
+            int done = preparedStatement.executeUpdate();
 
             MySQL.closeConnection(connection);
         } catch (SQLException e) {

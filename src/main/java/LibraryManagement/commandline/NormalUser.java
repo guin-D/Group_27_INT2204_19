@@ -1,5 +1,8 @@
 package LibraryManagement.commandline;
 
+import LibraryManagement.Database.BorrowingDatabase;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NormalUser extends User {
@@ -33,6 +36,13 @@ public class NormalUser extends User {
 
     @Override
     public void menu(User user) {
+        ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
+
+        for(Borrowing b: borrowings) {
+            b.setDaysLeft(b.getDaysLeft());
+            BorrowingDatabase.getInstance().update(b);
+        }
+
         System.out.println("1. Display Documents");
         System.out.println("2. Search");
         System.out.println("3. Place Orders");
