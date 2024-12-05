@@ -12,6 +12,7 @@ public class Admin extends User {
                 new DeleteDocument(),
                 new UpdateDocument(),
                 new Search(),
+                new DisplayBorrowing(),
                 new ViewOrders(),
                 new DisplayUserInfo(),
                 new Exit()
@@ -26,9 +27,10 @@ public class Admin extends User {
         System.out.println("3. Delete Document");
         System.out.println("4. Update Document");
         System.out.println("5. Search");
-        System.out.println("6. View Orders");
-        System.out.println("7. Display User Info");
-        System.out.println("8. Exit");
+        System.out.println("6. Display Borrowing");
+        System.out.println("7. View Orders");
+        System.out.println("8. Display User Info");
+        System.out.println("9. Exit");
 
         try {
             Scanner s = new Scanner(System.in);
