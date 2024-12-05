@@ -39,8 +39,8 @@
                         <Font size="14.0"/>
                     </font>
                 </TextField>
-                <Button fx:id="searchButton" mnemonicParsing="false" style="-fx-background-color: #203169;"
-                        text="Search" textFill="WHITE">
+                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch"
+                        style="-fx-background-color: #203169;" text="Search" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>

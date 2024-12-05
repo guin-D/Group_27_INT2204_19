@@ -108,7 +108,7 @@ public class Borrow extends NormalUserController {
 
         Button borrowBtn = new Button("Borrow");
         borrowBtn.setStyle("-fx-background-color: #203169; -fx-text-fill: #FFFFFF");
-        borrowBtn.setOnAction(event -> handleBorrowing(document));
+        borrowBtn.setOnAction(event -> handleBorrowing(document, qty));
 
         Region region = new Region();
         VBox.setVgrow(region, Priority.ALWAYS);
@@ -125,7 +125,7 @@ public class Borrow extends NormalUserController {
      * @param document The document to borrow.
      */
     @FXML
-    private void handleBorrowing(Document document) {
+    private void handleBorrowing(Document document, Label qty) {
         ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
         boolean alreadyBorrowed = borrowings.stream()
                 .anyMatch(b -> b.getDocumentTitle().equals(document.getTitle())
@@ -139,6 +139,9 @@ public class Borrow extends NormalUserController {
         if (document.getBrwcopiers() > 0) {
             Borrowing borrowing = new Borrowing(document, user);
             document.setBrwcopiers(document.getBrwcopiers() - 1);
+            String borrowCopies = qty.getText();
+            int numberBorrowCopies = Integer.parseInt(borrowCopies.replaceAll("[^0-9]", ""));
+            qty.setText("Borrow copies: " + String.valueOf(numberBorrowCopies - 1));
             DocumentDatabase.getInstance().update(document);
             BorrowingDatabase.getInstance().insert(borrowing);
 
