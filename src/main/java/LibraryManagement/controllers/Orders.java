@@ -104,14 +104,40 @@ public class Orders {
         Label qty = new Label("Available qty: " + document.getQty());
         qty.setStyle("-fx-text-fill: #203169");
 
+        TextField quantity = new TextField("1");
+        quantity.setPrefWidth(30);
+        quantity.setAlignment(Pos.CENTER);
+
+        Button incrementBtn = new Button("+");
+        incrementBtn.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #203169");
+        Button decrementBtn = new Button("-");
+        decrementBtn.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #203169");
+
+        incrementBtn.setOnAction(event -> {
+            int currentValue = Integer.parseInt(quantity.getText());
+            quantity.setText(String.valueOf(currentValue + 1));
+        });
+
+        decrementBtn.setOnAction(event -> {
+            int currentValue = Integer.parseInt(quantity.getText());
+            if (currentValue > 1) {
+                quantity.setText(String.valueOf(currentValue - 1));
+            }
+        });
+
+        HBox quantityBox = new HBox();
+        quantityBox.setSpacing(5);
+        quantityBox.setAlignment(Pos.CENTER_LEFT);
+        quantityBox.getChildren().addAll(decrementBtn, quantity, incrementBtn);
+
         Button orderBtn = new Button("Order");
         orderBtn.setStyle("-fx-background-color: #203169; -fx-text-fill: #FFFFFF");
-        orderBtn.setOnAction(event -> handleOrder(document));
+        orderBtn.setOnAction(event -> handleOrder(document, Integer.valueOf(quantity.getText())));
 
         Region region = new Region();
         VBox.setVgrow(region, Priority.ALWAYS);
 
-        content.getChildren().setAll(stars, title, qty, region, orderBtn);
+        content.getChildren().setAll(stars, title, qty, region, quantityBox, orderBtn);
         bookBox.getChildren().addAll(bookImage, content);
 
         return bookBox;
@@ -123,7 +149,7 @@ public class Orders {
      * @param document The document to order.
      */
     @FXML
-    private void handleOrder(Document document) {
+    private void handleOrder(Document document, int qty) {
         ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
         boolean alreadyOrdered = orders.stream()
                 .anyMatch(o -> o.getDocumentTitle().equals(document.getTitle())
@@ -135,8 +161,8 @@ public class Orders {
         }
 
         if (document.getQty() > 0) {
-            Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), 1);
-            document.setQty(document.getQty() - 1);
+            Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), qty);
+            document.setQty(document.getQty() - qty);
             DocumentDatabase.getInstance().update(document);
             orders.add(order);
             OrderDatabase.getInstance().insert(order);

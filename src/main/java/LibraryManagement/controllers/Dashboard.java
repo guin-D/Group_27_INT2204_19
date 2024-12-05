@@ -2,8 +2,11 @@ package LibraryManagement.controllers;
 
 import LibraryManagement.Database.BorrowingDatabase;
 import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.Database.OrderDatabase;
+import LibraryManagement.Database.UserDatabase;
 import LibraryManagement.commandline.Borrowing;
 import LibraryManagement.commandline.Document;
+import LibraryManagement.commandline.Order;
 import LibraryManagement.commandline.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -24,6 +28,19 @@ import java.util.ArrayList;
 public class Dashboard {
 
     private User user;
+
+    @FXML
+    private Label totalBook;
+
+    @FXML
+    private Label borrowedBook;
+
+    @FXML
+    private Label overdue;
+
+    @FXML
+    private Label members;
+
 
     @FXML
     private TableView<ArrayList<Object>> tableView;
@@ -50,9 +67,35 @@ public class Dashboard {
     private TableColumn<ArrayList<Object>, String> borrowedColumn;
 
     @FXML
+    private TableView<ArrayList<Object>> tableView1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> bookIdColumn1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> titleColumn1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> isbnColumn1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> nameColumn1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> authorColumn1;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, Integer> QTY;
+
+    @FXML
+    private TableColumn<ArrayList<Object>, String> price;
+
+    @FXML
     private ComboBox<String> sortComboBox;
 
     private ObservableList<ArrayList<Object>> borrowingList;
+
+    private ObservableList<ArrayList<Object>> placeOrderList;
 
     /**
      * Sets the user for the dashboard.
@@ -68,6 +111,21 @@ public class Dashboard {
      * and loading the borrowing data.
      */
     public void initialize() {
+        ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
+        ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
+        ArrayList<User> users = UserDatabase.getInstance().selectAll();
+
+        totalBook.setText(String.valueOf(documents.size()));
+        borrowedBook.setText(String.valueOf(borrowings.size()));
+        int i = 0;
+        for (Borrowing b : borrowings) {
+            if (b.getDaysLeft() < 0) {
+                i++;
+            }
+        }
+        overdue.setText(String.valueOf(i));
+        members.setText(String.valueOf(users.size()));
+
         borrowingList = FXCollections.observableArrayList();
         loadBorrowingData();
 
@@ -90,6 +148,27 @@ public class Dashboard {
         tableView.setPrefHeight(Region.USE_COMPUTED_SIZE);
         tableView.setItems(borrowingList);
 
+        placeOrderList = FXCollections.observableArrayList();
+        loadPlaceOrderData();
+
+        bookIdColumn1.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(0).toString()));
+        titleColumn1.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(1).toString()));
+        isbnColumn1.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(2).toString()));
+        nameColumn1.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(3).toString()));
+        authorColumn1.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(4).toString()));
+        QTY.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty((Integer) cellData.getValue().get(5)).asObject());
+        price.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get(6).toString()));
+
+        tableView1.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        tableView1.setItems(placeOrderList);
+
         // Populate the sort ComboBox with options
         sortComboBox.setItems(FXCollections.observableArrayList("Latest", "Oldest"));
     }
@@ -101,14 +180,40 @@ public class Dashboard {
         ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
 
+        int i = 1;
         for (Borrowing borrowing : borrowings) {
             Document matchingDocument = findMatchingDocument(borrowing.getDocumentTitle(), documents);
             if (matchingDocument != null) {
-                ArrayList<Object> row = createRow(borrowing, matchingDocument);
+                ArrayList<Object> row = createRow(borrowing, matchingDocument, i);
                 borrowingList.add(row);
+                i++;
             }
         }
     }
+
+    private void loadPlaceOrderData() {
+        ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
+        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+
+        int i = 1;
+        for (Order o : orders) {
+            Document matchingDocument = findMatchingDocument(o.getDocumentTitle(), documents);
+            if (matchingDocument != null) {
+                ArrayList<Object> row = new ArrayList<>();
+                row.add("#" + String.valueOf(i));
+                row.add(matchingDocument.getTitle());
+                row.add(matchingDocument.getIsbn());
+                row.add(o.getUserName());
+                row.add(matchingDocument.getAuthor());
+                row.add(o.getQty());
+                row.add(o.getPrice());
+                placeOrderList.add(row);
+                i++;
+            }
+        }
+
+    }
+
 
     /**
      * Finds a document by its title.
@@ -133,9 +238,9 @@ public class Dashboard {
      * @param document  the document information
      * @return a list of objects representing the row
      */
-    private ArrayList<Object> createRow(Borrowing borrowing, Document document) {
+    private ArrayList<Object> createRow(Borrowing borrowing, Document document, int i) {
         ArrayList<Object> row = new ArrayList<>();
-        row.add(document.getTitle());
+        row.add("#" + String.valueOf(i));
         row.add(document.getTitle());
         row.add(document.getIsbn());
         row.add(borrowing.getUserName());
