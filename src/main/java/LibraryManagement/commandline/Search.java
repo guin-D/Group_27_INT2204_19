@@ -33,6 +33,10 @@ public class Search implements IOOperation {
             case 3:
                 searchByAuthor();
                 break;
+
+            default:
+                System.out.println("Action is not supported\n");
+                break;
         }
 
         user.menu(user);
@@ -43,20 +47,25 @@ public class Search implements IOOperation {
         s.nextLine();
         String keyword = s.nextLine();
         ArrayList<Document> documents = DocumentDatabase.getInstance().searchByKeyword(keyword);
-        System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
+        if (documents.isEmpty()){
+            System.out.print("Document can't found");
+        } else {
+            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
+                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
 
-        for (Document b : documents) {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                    truncate(b.getTitle(), 40),
-                    truncate(b.getAuthor(), 30),
-                    truncate(b.getPublisher(), 40),
-                    b.getIsbn(),
-                    b.getQty(),
-                    b.getPrice(),
-                    b.getBrwcopiers()
-            );
+            for (Document b : documents) {
+                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
+                        truncate(b.getTitle(), 40),
+                        truncate(b.getAuthor(), 30),
+                        truncate(b.getPublisher(), 40),
+                        b.getIsbn(),
+                        b.getQty(),
+                        b.getPrice(),
+                        b.getBrwcopiers()
+                );
+            }
         }
+
     }
 
     public void searchByISBN() {
@@ -64,20 +73,25 @@ public class Search implements IOOperation {
         s.nextLine();
         String isbn = s.nextLine();
         ArrayList<Document> documents = DocumentDatabase.getInstance().searchByIsbn(isbn);
-        System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
+        if (documents.isEmpty()){
+            System.out.print("Document can't found");
+        } else {
+            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
+                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
 
-        for (Document b : documents) {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                    truncate(b.getTitle(), 40),
-                    truncate(b.getAuthor(), 30),
-                    truncate(b.getPublisher(), 40),
-                    b.getIsbn(),
-                    b.getQty(),
-                    b.getPrice(),
-                    b.getBrwcopiers()
-            );
+            for (Document b : documents) {
+                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
+                        truncate(b.getTitle(), 40),
+                        truncate(b.getAuthor(), 30),
+                        truncate(b.getPublisher(), 40),
+                        b.getIsbn(),
+                        b.getQty(),
+                        b.getPrice(),
+                        b.getBrwcopiers()
+                );
+            }
         }
+
     }
 
     public void searchByAuthor() {
@@ -85,20 +99,23 @@ public class Search implements IOOperation {
         s.nextLine();
         String author = s.nextLine();
         ArrayList<Document> documents = DocumentDatabase.getInstance().searchByAuthor(author);
-        System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
+        if (documents.isEmpty()){
+            System.out.print("Document can't found");
+        } else {
+            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
+                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
 
-        for (Document b : documents) {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                    truncate(b.getTitle(), 40),
-                    truncate(b.getAuthor(), 30),
-                    truncate(b.getPublisher(), 40),
-                    b.getIsbn(),
-                    b.getQty(),
-                    b.getPrice(),
-                    b.getBrwcopiers()
-            );
+            for (Document b : documents) {
+                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
+                        truncate(b.getTitle(), 40),
+                        truncate(b.getAuthor(), 30),
+                        truncate(b.getPublisher(), 40),
+                        b.getIsbn(),
+                        b.getQty(),
+                        b.getPrice(),
+                        b.getBrwcopiers()
+                );
+            }
         }
     }
-
 }
