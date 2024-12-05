@@ -1,4 +1,6 @@
 module LibraryManagementSystem {
+    exports LibraryManagement.commandline;
+    exports LibraryManagement.Database;
     requires javafx.controls;
     requires javafx.fxml;
 
