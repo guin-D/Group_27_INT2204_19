@@ -2,18 +2,16 @@ package LibraryManagement.commandline;
 
 public class Document {
 
-    private String title;      //title
-    private String author;    //author
-    private String publisher; //publisher
-    private String isbn;   //  Genre
-    private String status;    //Borrowing Status
-    private int qty;          // Copies for sale
-    private double price;     //price
-    private int brwcopiers;   // Copies for borrowing
-    private String imageLink;
+    private String title;      // title
+    private String author;     // author
+    private String publisher;  // publisher
+    private String isbn;       // ISBN
+    private int qty;           // copies for sale
+    private double price;      // price of 1 document
+    private int brwcopiers;    // copies for borrowing
+    private String imageLink;  // link of document's image
 
-    public Document() {
-    }
+    public Document(){}
 
     public Document(String title, String author, String publisher,
                     String isbn, int qty, double price, int brwcopiers, String imageLink) {
@@ -26,19 +24,6 @@ public class Document {
         this.brwcopiers = brwcopiers;
         this.imageLink = imageLink;
     }
-
-
-    public String toString() {
-        String text = "Document Title: " + title + "\n" +
-                "Document Author: " + author + "\n" +
-                "Document Publisher: " + publisher + "\n" +
-                "International Standard Book Number: " + isbn + "\n" +
-                "Qty: " + String.valueOf(qty) + "\n" +
-                "Price: " + String.valueOf(price) + "\n" +
-                "Borrowing Copies: " + String.valueOf(brwcopiers) + "\n";
-        return text;
-    }
-
 
     public String getTitle() {
         return title;
@@ -72,14 +57,6 @@ public class Document {
         this.isbn = isbn;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public int getQty() {
         return qty;
     }
@@ -105,7 +82,6 @@ public class Document {
     }
 
 
-
     public String getImageLink() {
         return imageLink;
     }
@@ -113,11 +89,4 @@ public class Document {
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
-
-    public String toString2() {
-        String text = title + "<N/>" + author + "<N/>" + publisher + "<N/>" +
-                isbn + "<N/>" + String.valueOf(qty) + "<N/>" + String.valueOf(price) + "<N/>" + String.valueOf(brwcopiers) + "<N/>";
-        return text;
-    }
-
 }

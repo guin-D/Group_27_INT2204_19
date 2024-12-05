@@ -5,6 +5,8 @@ import LibraryManagement.Database.OrderDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static LibraryManagement.commandline.DisplayDocument.truncate;
+
 public class ViewOrders implements IOOperation {
 
     @Override
@@ -23,14 +25,17 @@ public class ViewOrders implements IOOperation {
             if(o.getDocumentTitle().matches(documentName)) {
                 i = 1;
                 System.out.printf("%-50s %-40s %-30s %-20s\n",
-                        o.getDocumentTitle(), o.getUserName(), o.getPrice(), o.getQty());
+                        truncate(o.getDocumentTitle(), 50),
+                        o.getUserName(),
+                        o.getPrice(),
+                        o.getQty());
             }
         }
         if(i == 0) {
             System.out.println("Nobody order this document");
         }
 
-        System.out.println("\n");
+        System.out.println();
 
         user.menu(user);
     }

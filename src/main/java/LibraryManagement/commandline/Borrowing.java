@@ -77,9 +77,12 @@ public class Borrowing {
         this.user = user;
     }
 
-    public String toString() {
-        return "Borrowing time: " + start + "\nExpiri date: " + finish + "\nDays left: " + daysLeft;
+    public void setDaysLeft(int daysLeft) {
+        this.daysLeft = daysLeft;
+    }
 
+    public String toString() {
+        return "Borrowing time: " + start + "\nExpire date: " + finish + "\nDays left: " + daysLeft;
     }
 
     public String toString2() {

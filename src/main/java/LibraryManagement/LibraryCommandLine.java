@@ -1,5 +1,6 @@
 package LibraryManagement;
 
+import LibraryManagement.Database.BorrowingDatabase;
 import LibraryManagement.Database.UserDatabase;
 import LibraryManagement.commandline.*;
 
@@ -9,14 +10,28 @@ import java.util.Scanner;
 public class LibraryCommandLine {
     static Scanner s;
 
-    public static void main(String[] args) {
-        
+    public static void main() {
+
+        ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
+
+        for(Borrowing b: borrowings) {
+            b.setDaysLeft(b.getDaysLeft());
+            BorrowingDatabase.getInstance().update(b);
+        }
+
         System.out.println("Welcome to Library Management System!");
 
         int num;
-        System.out.println("0. Exit!\n1. Login\n2. New User");
         s = new Scanner(System.in);
-        num = s.nextInt();
+        do {
+            System.out.println("0. Exit!\n1. Login\n2. New User");
+            num = s.nextInt();
+
+            if (num < 0 || num > 2) {
+                System.out.println("Action is not supported\n");
+            }
+        } while (num < 0 || num > 2);
+
         switch (num) {
             case 1:
                 login();
@@ -24,6 +39,10 @@ public class LibraryCommandLine {
 
             case 2:
                 newUser();
+                break;
+
+            case 0:
+                System.out.println("Thank you!");
                 break;
         }
     }
@@ -48,30 +67,31 @@ public class LibraryCommandLine {
             user.menu(user);
         } else {
             System.out.println("User doesn't exist!");
+            main();
         }
     }
 
     public static void newUser() {
-        System.out.println("Enter name: ");
+        System.out.println("Enter phone number: ");
         s.nextLine();
-        String name = s.nextLine();
+        String phoneNumber = s.nextLine();
 
         ArrayList<User> users = UserDatabase.getInstance().selectAll();
 
         boolean f = false;
         for (User user : users) {
-            if (user.getName().toLowerCase().matches(name.toLowerCase())) {
+            if (user.getPhoneNumber().toLowerCase().matches(phoneNumber.toLowerCase())) {
                 f = true;
                 break;
             }
         }
 
         if (f) {
-            System.out.println("User exist!");
-            newUser();
+            System.out.println("Phone number exist!");
+            main();
         }
-        System.out.println("Enter phone number: ");
-        String phoneNumber = s.next();
+        System.out.println("Enter user name: ");
+        String name = s.next();
         System.out.println("Enter password: ");
         String password = s.next();
         System.out.println("1. Admin\n2. Normal User");

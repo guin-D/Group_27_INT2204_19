@@ -19,7 +19,8 @@ public class QRCodeGenerator {
           "ISBN: " + document.getIsbn() + "\n" +
           "Author: " + document.getAuthor() + "\n" +
           "Publisher: " + document.getPublisher() + "\n" +
-          "Qty available for purchase: " + document.getQty() + " with price: " +document.getPrice() + "\n" +
+          "Qty available for purchase: " + document.getQty() +
+          " with price: " +document.getPrice() + "VND\n" +
           "Qty available for borrow: " + document.getBrwcopiers() ;
 
       Hashtable<EncodeHintType, Object> hintMap = new Hashtable<>();
