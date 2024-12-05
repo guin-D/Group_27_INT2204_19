@@ -38,13 +38,34 @@ public class AddDocument implements IOOperation {
             document.setIsbn(s.nextLine());
 
             System.out.println("Enter QTY: ");
-            document.setQty(s.nextInt());
+            int qty;
+            do {
+                qty = s.nextInt();
+                if (qty < 0) {
+                    System.out.println("The value must be >= 0");
+                }
+            } while (qty < 0);
+            document.setQty(qty);
 
             System.out.println("Enter price: ");
-            document.setPrice(s.nextDouble());
+            double price;
+            do {
+                price = s.nextInt();
+                if (price < 0) {
+                    System.out.println("The value must be >= 0");
+                }
+            } while (price < 0);
+            document.setPrice(price);
 
             System.out.println("Enter Borrowing copies: ");
-            document.setBrwcopiers(s.nextInt());
+            int brwscopies;
+            do {
+                brwscopies = s.nextInt();
+                if (brwscopies < 0) {
+                    System.out.println("The value must be >= 0");
+                }
+            } while (brwscopies < 0);
+            document.setBrwcopiers(brwscopies);
 
             document.setImageLink("https://i.imgur.com/LprwO0E.png");
 
