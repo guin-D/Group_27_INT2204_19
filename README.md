@@ -63,3 +63,11 @@ This is the final project for the Object-Oriented Programming course (INT2204_19
 <div align="center">
   <img src="src/main/resources/LibraryManagement/ReadmeImage/screenshot3.jpg" alt="Orders">
 </div>
+
+
+
+## Diagrams
+- Use Case Diagram:
+<div align="center">
+  <img src="src/main/resources/LibraryManagement/ReadmeImage/UseCaseDiagram.png" alt="UseCaseDiagram">
+</div>
