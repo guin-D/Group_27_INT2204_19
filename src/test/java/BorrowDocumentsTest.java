@@ -1,8 +1,8 @@
 import LibraryManagement.commandline.BorrowDocuments;
 import LibraryManagement.commandline.TestMan;
 import LibraryManagement.commandline.User;
-import LibraryManagement.Database.DocumentDatabase;
-import LibraryManagement.Database.BorrowingDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
 import LibraryManagement.commandline.Document;
 import LibraryManagement.commandline.Borrowing;
 import org.junit.jupiter.api.Test;
