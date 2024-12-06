@@ -69,5 +69,7 @@ This is the final project for the Object-Oriented Programming course (INT2204_19
 ## Diagrams
 - Use Case Diagram:
 <div align="center">
-  <img src="src/main/resources/LibraryManagement/ReadmeImage/UseCaseDiagram.png" alt="UseCaseDiagram">
+  <img src="src/main/resources/LibraryManagement/ReadmeImage/UseCaseDiagram.jpg" alt="UseCaseDiagram">
 </div>
+
+- Class Diagram:
