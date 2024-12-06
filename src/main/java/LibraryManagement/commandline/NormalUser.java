@@ -1,6 +1,5 @@
 package LibraryManagement.commandline;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -48,20 +47,14 @@ public class NormalUser extends User {
         System.out.println("7. Display User Info");
         System.out.println("8. Exit");
 
-        try (Scanner s = new Scanner(System.in)) {
+        try {
+            Scanner s = new Scanner(System.in);
             int n = s.nextInt();
 
-            if (n < 1 || n > operations.length) {
-                System.out.println("Action is not supported.\n");
-                menu(user);
-            } else {
-                this.operations[n - 1].oper(user);
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Action is not supported.\n");
-            menu(user);
+            this.operations[n - 1].oper(user);
+            s.close();
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred: " + e.getMessage());
+            System.out.println("Action is not supported\n");
             menu(user);
         }
     }

@@ -7,14 +7,20 @@ import LibraryManagement.commandline.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The LibraryCommandLine class handles the main interaction with the user in the Library Management System.
+ * It includes user login, new user registration, and managing borrowings.
+ */
 public class LibraryCommandLine {
     static Scanner s;
 
+    /**
+     * The main method serves as the entry point of the library system.
+     * It allows users to either log in or create a new account.
+     */
     public static void main() {
-
         ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
-
-        for(Borrowing b: borrowings) {
+        for (Borrowing b : borrowings) {
             b.setDaysLeft(b.getDaysLeft());
             BorrowingDatabase.getInstance().update(b);
         }
@@ -47,7 +53,10 @@ public class LibraryCommandLine {
         }
     }
 
-
+    /**
+     * Handles the user login process. Prompts the user for phone number and password,
+     * and checks if the user exists in the system.
+     */
     public static void login() {
         System.out.println("Enter phone number: ");
         String phoneNumber = s.next();
@@ -62,6 +71,7 @@ public class LibraryCommandLine {
                 break;
             }
         }
+
         if (i != -1) {
             User user = users.get(i);
             user.menu(user);
@@ -71,41 +81,47 @@ public class LibraryCommandLine {
         }
     }
 
+    /**
+     * Handles the process of creating a new user. It checks if the phone number is already in use.
+     */
     public static void newUser() {
         System.out.println("Enter phone number: ");
         s.nextLine();
         String phoneNumber = s.nextLine();
 
         ArrayList<User> users = UserDatabase.getInstance().selectAll();
-
-        boolean f = false;
+        boolean exists = false;
         for (User user : users) {
             if (user.getPhoneNumber().toLowerCase().matches(phoneNumber.toLowerCase())) {
-                f = true;
+                exists = true;
                 break;
             }
         }
 
-        if (f) {
-            System.out.println("Phone number exist!");
+        if (exists) {
+            System.out.println("Phone number exists!");
             main();
         }
+
         System.out.println("Enter user name: ");
         String name = s.next();
         System.out.println("Enter password: ");
         String password = s.next();
         System.out.println("1. Admin\n2. Normal User");
-        int n2 = s.nextInt();
+        int userType = s.nextInt();
+
         User user;
-        if (n2 == 1) {
+        if (userType == 1) {
             String accessLevel = "Admin";
             user = new Admin(name, phoneNumber, password, accessLevel);
         } else {
             String accessLevel = "Normal";
             user = new NormalUser(name, phoneNumber, password, accessLevel);
         }
+
         UserDatabase.getInstance().insert(user);
         System.out.println("Create new user successful");
+
         user.menu(user);
     }
 }
