@@ -13,21 +13,6 @@ public class Ordering {
     private String userName;      // Username of the user (only used in one constructor)
 
     /**
-     * Constructor to create an order with Document and User objects.
-     *
-     * @param document The document being ordered.
-     * @param user The user placing the order.
-     * @param price The price of the document.
-     * @param qty The quantity of the document ordered.
-     */
-    public Ordering(Document document, User user, double price, int qty) {
-        this.document = document;
-        this.user = user;
-        this.price = price;
-        this.qty = qty;
-    }
-
-    /**
      * Constructor to create an order with document title and user name as strings.
      * This constructor is less recommended because it doesn't use the actual Document and User objects.
      *
