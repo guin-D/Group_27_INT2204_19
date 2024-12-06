@@ -5,20 +5,35 @@ import LibraryManagement.DAO.DocumentDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for deleting a document from the document database.
+ * It checks if the document exists, and if it does, it deletes it.
+ */
 public class DeleteDocument implements IOOperation {
 
+    // Constructor
+    public DeleteDocument() {
+    }
+
+    /**
+     * This method prompts the user to enter the title of a document and deletes the document
+     * if it exists in the database.
+     *
+     * @param user The user performing the delete operation.
+     */
     @Override
     public void oper(User user) {
-        Scanner s = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter document title: ");
-        String documentTitle = s.nextLine();
+        String documentTitle = scanner.nextLine();
 
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
 
-        int i = -1;
-        for(Document d: documents) {
-            if(d.getTitle().matches(documentTitle)){
-                i = 0;
+        int index = -1;
+        for (Document document : documents) {
+            if (document.getTitle().matches(documentTitle)) {
+                index = 0;
                 break;
             }
         }
@@ -26,7 +41,8 @@ public class DeleteDocument implements IOOperation {
         Document find = new Document();
         find.setTitle(documentTitle);
 
-        if(i == 0) {
+        // If the document was found, delete it from the database
+        if (index == 0) {
             DocumentDatabase.getInstance().remove(find);
             System.out.println("Document deleted successfully!\n");
         } else {

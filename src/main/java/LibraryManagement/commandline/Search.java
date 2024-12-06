@@ -9,29 +9,34 @@ import static LibraryManagement.commandline.DisplayDocument.truncate;
 
 public class Search implements IOOperation {
 
-    static Scanner s;
+    // Constructor
+    public Search() {
+    }
+
+    private Scanner s;
+
     @Override
     public void oper(User user) {
-
+        s = new Scanner(System.in);
         System.out.println("1. Search by Title"
                 + "\n2. Search by ISBN"
                 + "\n3. Search by Author"
         );
 
-        int num;
-        s = new Scanner(System.in);
-        num = s.nextInt();
+        int num = s.nextInt();
+        s.nextLine();
+
         switch (num) {
             case 1:
-                searchByTitle();
+                searchDocuments("title");
                 break;
 
             case 2:
-                searchByISBN();
+                searchDocuments("isbn");
                 break;
 
             case 3:
-                searchByAuthor();
+                searchDocuments("author");
                 break;
 
             default:
@@ -42,80 +47,58 @@ public class Search implements IOOperation {
         user.menu(user);
     }
 
-    public void searchByTitle() {
-        System.out.println("Enter document's title keyword: ");
-        s.nextLine();
-        String keyword = s.nextLine();
-        ArrayList<Document> documents = DocumentDatabase.getInstance().searchByKeyword(keyword);
-        if (documents.isEmpty()){
-            System.out.print("Document can't found");
-        } else {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
-
-            for (Document b : documents) {
-                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                        truncate(b.getTitle(), 40),
-                        truncate(b.getAuthor(), 30),
-                        truncate(b.getPublisher(), 40),
-                        b.getIsbn(),
-                        b.getQty(),
-                        b.getPrice(),
-                        b.getBrwcopiers()
-                );
-            }
+    // General search method for all types
+    private void searchDocuments(String searchType) {
+        String keyword = "";
+        if ("title".equals(searchType)) {
+            System.out.println("Enter document's title keyword: ");
+            keyword = s.nextLine();
+        } else if ("isbn".equals(searchType)) {
+            System.out.println("Enter document's ISBN: ");
+            keyword = s.nextLine();
+        } else if ("author".equals(searchType)) {
+            System.out.println("Enter document's author: ");
+            keyword = s.nextLine();
         }
 
-    }
+        ArrayList<Document> documents = getDocuments(searchType, keyword);
 
-    public void searchByISBN() {
-        System.out.println("Enter document's ISBN: ");
-        s.nextLine();
-        String isbn = s.nextLine();
-        ArrayList<Document> documents = DocumentDatabase.getInstance().searchByIsbn(isbn);
-        if (documents.isEmpty()){
-            System.out.print("Document can't found");
+        if (documents.isEmpty()) {
+            System.out.println("Document not found");
         } else {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
-
-            for (Document b : documents) {
-                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                        truncate(b.getTitle(), 40),
-                        truncate(b.getAuthor(), 30),
-                        truncate(b.getPublisher(), 40),
-                        b.getIsbn(),
-                        b.getQty(),
-                        b.getPrice(),
-                        b.getBrwcopiers()
-                );
-            }
+            displayDocuments(documents);
         }
-
     }
 
-    public void searchByAuthor() {
-        System.out.println("Enter document's author: ");
-        s.nextLine();
-        String author = s.nextLine();
-        ArrayList<Document> documents = DocumentDatabase.getInstance().searchByAuthor(author);
-        if (documents.isEmpty()){
-            System.out.print("Document can't found");
-        } else {
-            System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
-                    "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
+    // Fetch documents based on the search type
+    private ArrayList<Document> getDocuments(String searchType, String keyword) {
+        switch (searchType) {
+            case "title":
+                return DocumentDatabase.getInstance().searchByKeyword(keyword);
+            case "isbn":
+                return DocumentDatabase.getInstance().searchByIsbn(keyword);
+            case "author":
+                return DocumentDatabase.getInstance().searchByAuthor(keyword);
+            default:
+                return new ArrayList<>();
+        }
+    }
 
-            for (Document b : documents) {
-                System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
-                        truncate(b.getTitle(), 40),
-                        truncate(b.getAuthor(), 30),
-                        truncate(b.getPublisher(), 40),
-                        b.getIsbn(),
-                        b.getQty(),
-                        b.getPrice(),
-                        b.getBrwcopiers()
-                );
-            }
+    // Method to display document results
+    private void displayDocuments(ArrayList<Document> documents) {
+        System.out.printf("%-40s %-30s %-40s %-20s %-10s %-10s %-20s\n",
+                "Title", "Author", "Publisher", "ISBN", "Qty", "Price", "Brw cps");
+
+        for (Document document : documents) {
+            System.out.printf("%-40s %-30s %-40s %-20s %-10d %-10.2f %-20d\n",
+                    truncate(document.getTitle(), 40),
+                    truncate(document.getAuthor(), 30),
+                    truncate(document.getPublisher(), 40),
+                    document.getIsbn(),
+                    document.getQty(),
+                    document.getPrice(),
+                    document.getBrwcopiers()
+            );
         }
     }
 }
