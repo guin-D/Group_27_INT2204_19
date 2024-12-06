@@ -39,8 +39,8 @@
                         <Font size="14.0"/>
                     </font>
                 </TextField>
-                <Button fx:id="searchButton" mnemonicParsing="false" style="-fx-background-color: #203169;"
-                        text="Search" textFill="WHITE" onAction="#handleSearch">
+                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch"
+                        style="-fx-background-color: #203169;" text="Search" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
                             <image>
@@ -74,9 +74,9 @@
         </Label>
         <HBox prefHeight="67.0" prefWidth="200.0" spacing="60.0">
             <children>
-                <Button alignment="CENTER" mnemonicParsing="false" prefWidth="300.0"
+                <Button fx:id="allBooks" alignment="CENTER" mnemonicParsing="false" prefWidth="350.0"
                         style="-fx-background-color: #203169; -fx-background-radius: 10; -fx-border-radius: 10;"
-                        text="All books" textFill="WHITE">
+                        text="All books" textFill="WHITE" onAction="#handleAllBooks">
                     <graphic>
                         <ImageView fitHeight="94.0" fitWidth="134.0">
                             <image>
@@ -88,9 +88,9 @@
                         <Font size="20.0"/>
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefWidth="300.0"
+                <Button fx:id="mostOrdered" mnemonicParsing="false" prefWidth="350.0"
                         style="-fx-background-color: #e18c58; -fx-background-radius: 10; -fx-border-radius: 10;"
-                        text="Most borowed" textFill="WHITE">
+                        text="Most ordered" textFill="WHITE" onAction="#handleMostOrdered">
                     <graphic>
                         <ImageView fitHeight="94.0" fitWidth="134.0">
                             <image>
@@ -102,9 +102,9 @@
                         <Font size="20.0"/>
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefWidth="300.0"
+                <Button fx:id="newest" mnemonicParsing="false" prefWidth="350.0"
                         style="-fx-background-color: #203169; -fx-background-radius: 10; -fx-border-radius: 10;"
-                        text="Newest" textFill="WHITE">
+                        text="Newest" textFill="WHITE" onAction="#handleNewest">
                     <graphic>
                         <ImageView fitHeight="94.0" fitWidth="134.0">
                             <image>

@@ -185,7 +185,7 @@ public class GoogleBookAPI {
      */
     private void handleAddBook(Book book) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/Book.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/AddDocument.fxml"));
             Parent addBookRoot = loader.load();
 
             AddBook controller = loader.getController();

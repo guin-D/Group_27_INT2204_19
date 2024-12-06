@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 /**
  * Controller for the Orders section, allowing users to search, view, and order documents.
@@ -81,6 +83,7 @@ public class Orders {
         bookBox.setSpacing(10);
         bookBox.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 10;");
 
+        Button bookBtn = new Button();
         ImageView bookImage = new ImageView();
         bookImage.setFitWidth(128);
         bookImage.setFitHeight(175);
@@ -88,6 +91,9 @@ public class Orders {
             Image image = new Image(document.getImageLink(), true);
             bookImage.setImage(image);
         }
+        bookBtn.setGraphic(bookImage);
+        bookBtn.setStyle("-fx-background-color: #FFFFFF");
+        bookBtn.setOnAction(event -> handleSeeMore(document));
 
         VBox content = new VBox();
         content.setSpacing(10);
@@ -138,7 +144,7 @@ public class Orders {
         VBox.setVgrow(region, Priority.ALWAYS);
 
         content.getChildren().setAll(stars, title, qty, region, quantityBox, orderBtn);
-        bookBox.getChildren().addAll(bookImage, content);
+        bookBox.getChildren().addAll(bookBtn, content);
 
         return bookBox;
     }
@@ -246,5 +252,95 @@ public class Orders {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    /**
+     * Displays all books in the library by default.
+     */
+    @FXML
+    private void handleAllBooks() {
+        Task<ArrayList<Document>> task = new Task<>() {
+            @Override
+            protected ArrayList<Document> call() throws Exception {
+                return DocumentDatabase.getInstance().selectAll();
+            }
+        };
+
+        task.setOnSucceeded(event -> updateGridWithDocuments(task.getValue()));
+        task.setOnFailed(event -> System.out.println("Failed to load all books: " + task.getException().getMessage()));
+
+        new Thread(task).start();
+    }
+
+    /**
+     * Displays the books sorted by the most ordered count using OrderDatabase.
+     */
+    @FXML
+    private void handleMostOrdered() {
+        Task<ArrayList<Document>> task = new Task<>() {
+            @Override
+            protected ArrayList<Document> call() throws Exception {
+                ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
+                ArrayList<Document> documents = new ArrayList<>();
+
+                orderings.stream()
+                        .collect(Collectors.groupingBy(Ordering::getDocumentTitle, Collectors.counting()))
+                        .entrySet()
+                        .stream()
+                        .sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue()))
+                        .forEachOrdered(entry -> {
+                            ArrayList<Document> document = DocumentDatabase.getInstance().searchByKeyword(entry.getKey());
+                            if (document != null) {
+                                documents.addAll(document);
+                            }
+                        });
+
+                return documents;
+            }
+        };
+
+        task.setOnSucceeded(event -> updateGridWithDocuments(task.getValue()));
+        task.setOnFailed(event -> System.out.println("Failed to load most ordered books: " + task.getException().getMessage()));
+
+        new Thread(task).start();
+    }
+
+
+    /**
+     * Displays the books sorted in reverse order of addition using DocumentDatabase.
+     */
+    @FXML
+    private void handleNewest() {
+        Task<ArrayList<Document>> task = new Task<>() {
+            @Override
+            protected ArrayList<Document> call() throws Exception {
+                ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
+                Collections.reverse(documents);
+                return documents;
+            }
+        };
+
+        task.setOnSucceeded(event -> updateGridWithDocuments(task.getValue()));
+        task.setOnFailed(event -> System.out.println("Failed to load newest books: " + task.getException().getMessage()));
+
+        new Thread(task).start();
+    }
+
+    @FXML
+    private void handleSeeMore(Document document) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LibraryManagement/FXML/DocumentView.fxml"));
+            Parent updateDocumentRoot = loader.load();
+
+            DocumentView controller = loader.getController();
+            controller.setData(document);
+
+            Stage stage = new Stage();
+            stage.setTitle("Document");
+            stage.setScene(new Scene(updateDocumentRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
