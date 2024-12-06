@@ -4,6 +4,8 @@ import LibraryManagement.commandline.ReturnDocument;
 import LibraryManagement.commandline.TestMan;
 import LibraryManagement.commandline.User;
 import LibraryManagement.DAO.BorrowingDatabase;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -14,7 +16,12 @@ public class ReturnDocumentTest {
 
   @Test
   void ReturnDocumentTest() {
-    String borrowedDoc = "sachmoi";
+    // chuyen huong dau ra
+    PrintStream originalOut = System.out;
+    ByteArrayOutputStream tempStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(tempStream));
+    try {
+    String borrowedDoc = "conyeume";
     System.setIn(new ByteArrayInputStream(borrowedDoc.getBytes()));
 
     User user = new TestMan("John Doe", "123456789", "password", "normaluser");
@@ -30,7 +37,7 @@ public class ReturnDocumentTest {
         break;
       }
     }
-    assertNotNull(borrowingDoc);
+    assertNotNull(borrowingDoc, "Doc did not borrowed");
     int beforeBorrowing = borrowingDatabaseBefore.selectAll().size();
     int theDocBrwcpBefore = documentDatabase.getDocumentByTitle(borrowedDoc).getBrwcopiers();
 
@@ -41,7 +48,10 @@ public class ReturnDocumentTest {
     int afterBorrowing = borrowingDatabaseAfter.selectAll().size();
     int theDocBrwcpAfter = documentDatabase.getDocumentByTitle(borrowedDoc).getBrwcopiers();
 
-    assertEquals(beforeBorrowing - 1, afterBorrowing);
-    assertEquals(theDocBrwcpBefore + 1, theDocBrwcpAfter);
+    assertEquals(beforeBorrowing - 1, afterBorrowing, "Borrow not decrease");
+    assertEquals(theDocBrwcpBefore + 1, theDocBrwcpAfter, "Brwcopiers not increase");
+    } finally {
+      System.setOut(originalOut);
+    }
   }
 }

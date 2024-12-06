@@ -16,70 +16,54 @@ public class SignUpTest {
     userDatabase = UserDatabase.getInstance();
   }
 
-  //kiem tra so dien thoai da bi trung chua
+  // kiem tra sdt trung chua
   private boolean isPhoneNumberTaken(String phoneNumber) {
     return userDatabase.selectAll().stream()
         .anyMatch(user -> user.getPhoneNumber().equals(phoneNumber));
   }
 
-  //kiem tra cac thuoc tinh user moi tao da dung chua
+  // kiem tra thong tin nguoi dung moi tao
   private void validateUserCreation(User user) {
-    boolean userCreated = userDatabase.selectAll().stream()
-        .anyMatch(dbUser -> dbUser.getPhoneNumber().equals(user.getPhoneNumber()));
-    assertTrue(userCreated);
-
-    assertEquals(user.getName(), userDatabase.selectAll().stream()
+    // lay nguoi dung tu database
+    User createdUser = userDatabase.selectAll().stream()
         .filter(dbUser -> dbUser.getPhoneNumber().equals(user.getPhoneNumber()))
-        .findFirst().get().getName());
+        .findFirst()
+        .orElse(null);
 
-    assertEquals(user.getPhoneNumber(), userDatabase.selectAll().stream()
-        .filter(dbUser -> dbUser.getPhoneNumber().equals(user.getPhoneNumber()))
-        .findFirst().get().getPhoneNumber());
+    assertNotNull(createdUser, "User should be created in the database.");
 
-    assertEquals(user.getAccessLevel(), userDatabase.selectAll().stream()
-        .filter(dbUser -> dbUser.getPhoneNumber().equals(user.getPhoneNumber()))
-        .findFirst().get().getAccessLevel());
+    // kiem tra cac thuoc tinh nguoi dung
+    assertEquals(user.getName(), createdUser.getName(), "Name should match.");
+    assertEquals(user.getPhoneNumber(), createdUser.getPhoneNumber(), "Phone number should match.");
+    assertEquals(user.getAccessLevel(), createdUser.getAccessLevel(), "Access level should match.");
+  }
+
+  // phuong thuc dang ky tai khoan
+  private void signUpTest(String name, String phoneNumber, String password, String accessLevel) {
+    // kiem tra sdt trung
+    assertFalse(isPhoneNumberTaken(phoneNumber), "Phone number should not be taken.");
+
+    // tao nguoi dung moi
+    User user = accessLevel.equals("Admin") ? new Admin(name, phoneNumber, password, accessLevel)
+        : new NormalUser(name, phoneNumber, password, accessLevel);
+
+    // them nguoi dung vao database
+    int result = userDatabase.insert(user);
+    assertTrue(result > 0, "Failed to insert user into the database.");
+
+    // kiem tra thong tin nguoi dung
+    validateUserCreation(user);
   }
 
   @Test
   void SignUpNormalAccTest() {
-    //test tai khoan normal user
-    String name = "Johnny sinshit";
-    String phoneNumber = "1234567";
-    String password = "password123";
-    String accessLevel = "Normal";
-
-    //goi ham kiem tra so dien thoai da ton tai chua
-    assertFalse(isPhoneNumberTaken(phoneNumber));
-
-    // tao nguoi dung moi
-    User normalUser = new NormalUser(name, phoneNumber, password, accessLevel);
-
-    // them nguoi dung moi vao database
-    int result = userDatabase.insert(normalUser);
-
-    // kiem tra thong tin nguoi dung
-    validateUserCreation(normalUser);
+    // test tk normal
+    signUpTest("Johnny sinshit", "00", "password123", "Normal");
   }
 
   @Test
   void SignUpAdminAccTest() {
-    // test tai khoan nguoi dung Admin
-    String name = "Admin User";
-    String phoneNumber = "00";
-    String password = "adminpassword";
-    String accessLevel = "Admin";
-
-    // kiem tra neu so dien thoai da ton tai
-    assertFalse(isPhoneNumberTaken(phoneNumber));
-
-    // tao nguoi dung admin
-    User adminUser = new Admin(name, phoneNumber, password, accessLevel);
-
-    // them nguoi dung vao database
-    int result = userDatabase.insert(adminUser);
-
-    // kiem tra thong tin nguoi dung xem co dung ko
-    validateUserCreation(adminUser);
+    // test tk admin
+    signUpTest("Admin User", "00", "adminpassword", "Admin");
   }
 }
