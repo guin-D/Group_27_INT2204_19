@@ -1,7 +1,7 @@
 import LibraryManagement.commandline.AddDocument;
 import LibraryManagement.commandline.TestMan;
 import LibraryManagement.commandline.User;
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 import LibraryManagement.commandline.Document;
 import org.junit.jupiter.api.Test;
 
