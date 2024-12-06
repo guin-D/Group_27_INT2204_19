@@ -30,7 +30,7 @@ public class LibraryCommandLine {
         int num;
         s = new Scanner(System.in);
         do {
-            System.out.println("0. Exit!\n1. Login\n2. New User");
+            System.out.println("0. Exit!\n1. Sign In\n2. Sign Up");
             num = s.nextInt();
 
             if (num < 0 || num > 2) {
@@ -40,11 +40,11 @@ public class LibraryCommandLine {
 
         switch (num) {
             case 1:
-                login();
+                signIn();
                 break;
 
             case 2:
-                newUser();
+                signUp();
                 break;
 
             case 0:
@@ -57,7 +57,7 @@ public class LibraryCommandLine {
      * Handles the user login process. Prompts the user for phone number and password,
      * and checks if the user exists in the system.
      */
-    public static void login() {
+    public static void signIn() {
         System.out.println("Enter phone number: ");
         String phoneNumber = s.next();
         System.out.println("Enter password: ");
@@ -84,7 +84,7 @@ public class LibraryCommandLine {
     /**
      * Handles the process of creating a new user. It checks if the phone number is already in use.
      */
-    public static void newUser() {
+    public static void signUp() {
         System.out.println("Enter phone number: ");
         s.nextLine();
         String phoneNumber = s.nextLine();

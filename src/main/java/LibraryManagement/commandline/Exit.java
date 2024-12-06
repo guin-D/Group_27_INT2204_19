@@ -39,11 +39,11 @@ public class Exit implements IOOperation {
 
             switch (num) {
                 case 1:
-                    LibraryCommandLine.login();
+                    LibraryCommandLine.signIn();
                     break;
 
                 case 2:
-                    LibraryCommandLine.newUser();
+                    LibraryCommandLine.signUp();
                     break;
 
                 default:
