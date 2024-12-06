@@ -1,6 +1,6 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 import LibraryManagement.commandline.Document;
 import LibraryManagement.utils.Book;
 import javafx.fxml.FXML;

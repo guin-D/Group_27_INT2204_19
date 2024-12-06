@@ -1,4 +1,4 @@
-package LibraryManagement.Database;
+package LibraryManagement.DAO;
 
 import LibraryManagement.commandline.Document;
 import LibraryManagement.commandline.MySQL;
@@ -7,8 +7,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DocumentDatabase {
+    private static DocumentDatabase instance;
+
     public static DocumentDatabase getInstance() {
-        return new DocumentDatabase();
+        if (instance == null) {
+            instance = new DocumentDatabase();
+        }
+        return instance;
     }
 
     public int insert(Document document) {

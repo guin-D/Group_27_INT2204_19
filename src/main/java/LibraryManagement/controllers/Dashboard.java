@@ -1,12 +1,12 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.DocumentDatabase;
-import LibraryManagement.Database.OrderDatabase;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
+import LibraryManagement.DAO.OrderDatabase;
+import LibraryManagement.DAO.UserDatabase;
 import LibraryManagement.commandline.Borrowing;
 import LibraryManagement.commandline.Document;
-import LibraryManagement.commandline.Order;
+import LibraryManagement.commandline.Ordering;
 import LibraryManagement.commandline.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -193,10 +193,10 @@ public class Dashboard {
 
     private void loadPlaceOrderData() {
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
 
         int i = 1;
-        for (Order o : orders) {
+        for (Ordering o : orderings) {
             Document matchingDocument = findMatchingDocument(o.getDocumentTitle(), documents);
             if (matchingDocument != null) {
                 ArrayList<Object> row = new ArrayList<>();

@@ -1,6 +1,6 @@
 package LibraryManagement.commandline;
 
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 
 import java.util.ArrayList;
 import java.util.Scanner;

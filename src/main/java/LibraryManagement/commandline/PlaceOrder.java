@@ -1,8 +1,7 @@
 package LibraryManagement.commandline;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.DocumentDatabase;
-import LibraryManagement.Database.OrderDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
+import LibraryManagement.DAO.OrderDatabase;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +15,7 @@ public class PlaceOrder implements IOOperation {
         String documentName = s.nextLine();
 
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
 
         int i = -1;
         for (Document document : documents) {
@@ -37,12 +36,12 @@ public class PlaceOrder implements IOOperation {
                         + "\nEnter the quantity of document you want to order:");
                     }
                 } while ((document.getQty() - qty) < 0);
-                Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), qty);
+                Ordering ordering = new Ordering(document.getTitle(), user.getName(), document.getPrice(), qty);
                 document.setQty(document.getQty() - qty);
                 DocumentDatabase.getInstance().update(document);
-                orders.add(order);
+                orderings.add(ordering);
                 documents.set(i, document);
-                OrderDatabase.getInstance().insert(order);
+                OrderDatabase.getInstance().insert(ordering);
                 System.out.println("Order placed successfully!\n");
             } else {
                 System.out.println("This document isn't available for order!");

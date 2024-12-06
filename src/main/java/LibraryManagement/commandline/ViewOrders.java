@@ -1,6 +1,6 @@
 package LibraryManagement.commandline;
 
-import LibraryManagement.Database.OrderDatabase;
+import LibraryManagement.DAO.OrderDatabase;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,9 +15,9 @@ public class ViewOrders implements IOOperation {
         Scanner s = new Scanner(System.in);
         String documentName = s.nextLine();
 
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
         int i = 0;
-        for (Order o : orders) {
+        for (Ordering o : orderings) {
             if(o.getDocumentTitle().matches(documentName)) {
                 i = 1;
                 break;
@@ -29,7 +29,7 @@ public class ViewOrders implements IOOperation {
             System.out.printf("%-50s %-40s %-30s %-20s\n",
                     "Title", "User", "Price", "Quantity");
 
-            for (Order o : orders) {
+            for (Ordering o : orderings) {
                 if(o.getDocumentTitle().matches(documentName)) {
                     System.out.printf("%-50s %-40s %-30s %-20s\n",
                             truncate(o.getDocumentTitle(), 50),

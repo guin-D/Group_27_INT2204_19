@@ -1,4 +1,4 @@
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 import LibraryManagement.commandline.Document;
 import LibraryManagement.QR.QRCodeGenerator;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -22,7 +22,7 @@ public class QRTest {
   @BeforeEach
   public void setUp() {
     //lay doi tuong de tao qr bang title
-    String title = "Essentials 2";
+    String title = "";
     DocumentDatabase documentDatabase = DocumentDatabase.getInstance();
     document = documentDatabase.getDocumentByTitle(title);
   }

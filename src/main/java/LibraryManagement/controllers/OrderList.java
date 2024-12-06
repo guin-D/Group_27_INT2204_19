@@ -1,11 +1,9 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.DocumentDatabase;
-import LibraryManagement.Database.OrderDatabase;
-import LibraryManagement.commandline.Borrowing;
+import LibraryManagement.DAO.DocumentDatabase;
+import LibraryManagement.DAO.OrderDatabase;
 import LibraryManagement.commandline.Document;
-import LibraryManagement.commandline.Order;
+import LibraryManagement.commandline.Ordering;
 import LibraryManagement.commandline.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -42,9 +40,9 @@ public class OrderList {
         this.user = user;
         mainBox.getChildren().clear();
         ArrayList<Document> documents = DocumentDatabase.getInstance().selectAll();
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
 
-        for (Order o : orders) {
+        for (Ordering o : orderings) {
             if (o.getUserName().equals(user.getName())) {
                 for (Document document : documents) {
                     if (document.getTitle().matches(o.getDocumentTitle())) {
@@ -60,10 +58,10 @@ public class OrderList {
      * Creates a UI box for a borrowed document.
      *
      * @param document the document to display
-     * @param order    the order record of the user
+     * @param ordering    the order record of the user
      * @return the HBox containing the book's details
      */
-    private HBox createBorrowBox(Document document, Order order) {
+    private HBox createBorrowBox(Document document, Ordering ordering) {
         HBox bookBox = new HBox();
         bookBox.setSpacing(20);
         bookBox.setPadding(new Insets(10, 30, 0, 0));

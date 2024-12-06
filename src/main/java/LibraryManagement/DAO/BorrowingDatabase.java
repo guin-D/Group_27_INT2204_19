@@ -1,4 +1,4 @@
-package LibraryManagement.Database;
+package LibraryManagement.DAO;
 
 import LibraryManagement.commandline.*;
 
@@ -7,8 +7,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BorrowingDatabase {
+    private static BorrowingDatabase instance;
+
     public static BorrowingDatabase getInstance() {
-        return new BorrowingDatabase();
+        if (instance == null) {
+            instance = new BorrowingDatabase();
+        }
+        return instance;
     }
 
     public int insert(Borrowing borrowing) {

@@ -1,4 +1,4 @@
-package LibraryManagement.Database;
+package LibraryManagement.DAO;
 
 import LibraryManagement.commandline.*;
 
@@ -9,9 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UserDatabase {
+    private static UserDatabase instance;
 
     public static UserDatabase getInstance() {
-        return new UserDatabase();
+        if (instance == null) {
+            instance = new UserDatabase();
+        }
+        return instance;
     }
 
     public int insert(User user) {

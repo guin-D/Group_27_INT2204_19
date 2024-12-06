@@ -1,6 +1,6 @@
 package LibraryManagement.commandline;
 
-import LibraryManagement.Database.BorrowingDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
 
 import java.util.ArrayList;
 

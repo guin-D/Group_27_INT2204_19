@@ -1,7 +1,7 @@
 package LibraryManagement;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
+import LibraryManagement.DAO.UserDatabase;
 import LibraryManagement.commandline.*;
 
 import java.util.ArrayList;

@@ -1,27 +1,31 @@
-package LibraryManagement.Database;
+package LibraryManagement.DAO;
 
 import LibraryManagement.commandline.MySQL;
-import LibraryManagement.commandline.Order;
+import LibraryManagement.commandline.Ordering;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderDatabase {
-    public static OrderDatabase getInstance() {
-        return new OrderDatabase();
-    }
+    private static OrderDatabase instance;
 
-    public int insert(Order order) {
+    public static OrderDatabase getInstance() {
+        if (instance == null) {
+            instance = new OrderDatabase();
+        }
+        return instance;
+    }
+    public int insert(Ordering ordering) {
         try {
             Connection connection = MySQL.getConnection();
 
             String sql = "INSERT INTO `order` (document, user, price, qty) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, order.getDocumentTitle());
-            preparedStatement.setString(2, order.getUserName());
-            preparedStatement.setDouble(3, order.getPrice());
-            preparedStatement.setInt(4, order.getQty());
+            preparedStatement.setString(1, ordering.getDocumentTitle());
+            preparedStatement.setString(2, ordering.getUserName());
+            preparedStatement.setDouble(3, ordering.getPrice());
+            preparedStatement.setInt(4, ordering.getQty());
 
             int done = preparedStatement.executeUpdate();
 
@@ -32,8 +36,8 @@ public class OrderDatabase {
         return 0;
     }
 
-    public ArrayList<Order> selectAll() {
-        ArrayList<Order> orders = new ArrayList<Order>();
+    public ArrayList<Ordering> selectAll() {
+        ArrayList<Ordering> orderings = new ArrayList<Ordering>();
 
         try {
             Connection connection = MySQL.getConnection();
@@ -50,8 +54,8 @@ public class OrderDatabase {
                 double price = resultSet.getDouble("price");
                 int qty = resultSet.getInt("qty");
 
-                Order order = new Order(document, user, price, qty);
-                orders.add(order);
+                Ordering ordering = new Ordering(document, user, price, qty);
+                orderings.add(ordering);
             }
 
             MySQL.closeConnection(connection);
@@ -59,6 +63,6 @@ public class OrderDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orders;
+        return orderings;
     }
 }

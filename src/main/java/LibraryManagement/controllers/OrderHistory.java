@@ -1,6 +1,6 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 import LibraryManagement.commandline.Document;
 import javafx.application.Platform;
 import javafx.concurrent.Task;

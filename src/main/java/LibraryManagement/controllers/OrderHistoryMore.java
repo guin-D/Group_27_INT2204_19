@@ -1,10 +1,8 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.OrderDatabase;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.OrderDatabase;
 import LibraryManagement.commandline.Document;
-import LibraryManagement.commandline.Order;
-import LibraryManagement.commandline.User;
+import LibraryManagement.commandline.Ordering;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,10 +97,10 @@ public class OrderHistoryMore {
      * @return the borrow count
      */
     private int calculateBorrowCount() {
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
         int borrowCount = 0;
-        for (Order order : orders) {
-            if (order.getDocumentTitle().matches(document.getTitle())) {
+        for (Ordering ordering : orderings) {
+            if (ordering.getDocumentTitle().matches(document.getTitle())) {
                 borrowCount++;
             }
         }
@@ -115,14 +113,14 @@ public class OrderHistoryMore {
     @FXML
     public void loadOrderHistory() {
         borrowHistoryList = FXCollections.observableArrayList();
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
 
-        for (Order order : orders) {
-            if (order.getDocumentTitle().equals(document.getTitle())) {
+        for (Ordering ordering : orderings) {
+            if (ordering.getDocumentTitle().equals(document.getTitle())) {
                 ArrayList<Object> row = new ArrayList<>();
-                row.add(order.getUserName() != null ? order.getUserName() : "N/A");
-                row.add(order.getPrice());
-                row.add(order.getQty());
+                row.add(ordering.getUserName() != null ? ordering.getUserName() : "N/A");
+                row.add(ordering.getPrice());
+                row.add(ordering.getQty());
 
                 borrowHistoryList.add(row);
             }

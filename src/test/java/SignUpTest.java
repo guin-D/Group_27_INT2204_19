@@ -1,7 +1,7 @@
 import LibraryManagement.commandline.NormalUser;
 import LibraryManagement.commandline.Admin;
 import LibraryManagement.commandline.User;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.UserDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

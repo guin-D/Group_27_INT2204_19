@@ -1,5 +1,5 @@
 import LibraryManagement.commandline.*;
-import LibraryManagement.Database.*;
+import LibraryManagement.DAO.*;
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,10 +1,10 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.OrderDatabase;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
+import LibraryManagement.DAO.OrderDatabase;
+import LibraryManagement.DAO.UserDatabase;
 import LibraryManagement.commandline.Borrowing;
-import LibraryManagement.commandline.Order;
+import LibraryManagement.commandline.Ordering;
 import LibraryManagement.commandline.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -119,7 +119,7 @@ public class Members {
     private void loadMemberData() {
         ArrayList<User> users = UserDatabase.getInstance().selectAll();
         ArrayList<Borrowing> borrowings = BorrowingDatabase.getInstance().selectAll();
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
 
         for (User user : users) {
             ArrayList<Object> row = new ArrayList<>();
@@ -141,7 +141,7 @@ public class Members {
             row.add(String.valueOf(over));
 
             int order = 0;
-            for (Order o : orders) {
+            for (Ordering o : orderings) {
                 if (o.getUserName().equals(user.getName())) {
                     order++;
                 }

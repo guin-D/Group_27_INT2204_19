@@ -1,6 +1,6 @@
 package LibraryManagement.commandline;
 
-public class Order {
+public class Ordering {
     private Document document;
     private User user;
     private double price;
@@ -8,21 +8,21 @@ public class Order {
     private String documentTitle;
     private String userName;
 
-    public Order(Document document, User user, double price, int qty) {
+    public Ordering(Document document, User user, double price, int qty) {
         this.document = document;
         this.user = user;
         this.price = price;
         this.qty = qty;
     }
 
-    public Order(String document, String user, double price, int qty) {
+    public Ordering(String document, String user, double price, int qty) {
         this.documentTitle = document;
         this.userName = user;
         this.price = price;
         this.qty = qty;
     }
 
-    public Order() {
+    public Ordering() {
     }
 
     public Document getBook() {

@@ -1,7 +1,7 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.DocumentDatabase;
-import LibraryManagement.Database.OrderDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
+import LibraryManagement.DAO.OrderDatabase;
 import LibraryManagement.commandline.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -150,13 +150,13 @@ public class Orders {
      */
     @FXML
     private void handleOrder(Document document, int qty) {
-        ArrayList<Order> orders = OrderDatabase.getInstance().selectAll();
+        ArrayList<Ordering> orderings = OrderDatabase.getInstance().selectAll();
         if (document.getQty() > 0) {
-            Order order = new Order(document.getTitle(), user.getName(), document.getPrice(), qty);
+            Ordering ordering = new Ordering(document.getTitle(), user.getName(), document.getPrice(), qty);
             document.setQty(document.getQty() - qty);
             DocumentDatabase.getInstance().update(document);
-            orders.add(order);
-            OrderDatabase.getInstance().insert(order);
+            orderings.add(ordering);
+            OrderDatabase.getInstance().insert(ordering);
 
             showAlert("Order placed successfully!", "Your order has been placed.");
         } else {

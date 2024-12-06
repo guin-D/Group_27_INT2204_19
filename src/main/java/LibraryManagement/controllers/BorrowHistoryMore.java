@@ -1,7 +1,7 @@
 package LibraryManagement.controllers;
 
-import LibraryManagement.Database.BorrowingDatabase;
-import LibraryManagement.Database.UserDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
+import LibraryManagement.DAO.UserDatabase;
 import LibraryManagement.commandline.Borrowing;
 import LibraryManagement.commandline.Document;
 import LibraryManagement.commandline.User;

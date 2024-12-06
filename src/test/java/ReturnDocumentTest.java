@@ -1,9 +1,9 @@
-import LibraryManagement.Database.DocumentDatabase;
+import LibraryManagement.DAO.DocumentDatabase;
 import LibraryManagement.commandline.Borrowing;
 import LibraryManagement.commandline.ReturnDocument;
 import LibraryManagement.commandline.TestMan;
 import LibraryManagement.commandline.User;
-import LibraryManagement.Database.BorrowingDatabase;
+import LibraryManagement.DAO.BorrowingDatabase;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
