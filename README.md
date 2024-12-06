@@ -73,3 +73,4 @@ This is the final project for the Object-Oriented Programming course (INT2204_19
 </div>
 
 - Class Diagram:
+[Class Diagram](https://drive.google.com/file/d/1I9tGl4Xp73EEQ4yLJpjcqXClYPsOSsLd/view?usp=sharing)
