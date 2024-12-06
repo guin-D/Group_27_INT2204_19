@@ -1,5 +1,7 @@
 import LibraryManagement.commandline.*;
 import LibraryManagement.DAO.DocumentDatabase;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,8 +12,13 @@ public class UpdateDocumentTest {
 
   @Test
   void UpdateDocumentTest() {
-    //gia lap cac dau vao
-    String documentTitle = "adumamay";
+    // chuyen huong dau ra
+    PrintStream originalOut = System.out;
+    ByteArrayOutputStream tempStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(tempStream));
+    try {
+      //gia lap cac dau vao
+    String documentTitle = "haruharu";
     String newAuthor = "wow";
     String newPublisher = "wow";
     String newIsbn = "wow";
@@ -48,6 +55,9 @@ public class UpdateDocumentTest {
                 doc.getIsbn().equals(newIsbn) &&
                 doc.getQty() == newQty &&
                 doc.getPrice() == newPrice &&
-                doc.getBrwcopiers() == newBrwcopiers));
+                doc.getBrwcopiers() == newBrwcopiers), "Document information mismatch");
+    } finally {
+      System.setOut(originalOut);
+    }
   }
 }

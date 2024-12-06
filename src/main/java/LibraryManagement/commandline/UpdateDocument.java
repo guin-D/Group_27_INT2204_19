@@ -46,7 +46,7 @@ public class UpdateDocument implements IOOperation {
             System.out.println("Price after update: ");
             double price;
             do {
-                price = s.nextInt();
+                price = s.nextDouble();
                 if (price < 0) {
                     System.out.println("The value must be >= 0");
                 }

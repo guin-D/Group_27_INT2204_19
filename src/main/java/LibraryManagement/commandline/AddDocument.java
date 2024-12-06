@@ -50,7 +50,7 @@ public class AddDocument implements IOOperation {
             System.out.println("Enter price: ");
             double price;
             do {
-                price = s.nextInt();
+                price = s.nextDouble();
                 if (price < 0) {
                     System.out.println("The value must be >= 0");
                 }
